@@ -38,7 +38,14 @@ jobs:
 
           tools: composer
 
-
+      - name: Create .env for CI
+        run: |
+          cat > .env <<'EOF'
+          APP_ENV=test
+          APP_SECRET=ci-secret
+          DATABASE_URL=mysql://recipe:recipe@127.0.0.1:3306/recipe_test?serverVersion=8.4
+          EOF
+      
       - name: Install dependencies
         run: |
           composer install \
@@ -121,7 +128,13 @@ jobs:
           restore-keys: |
             composer-${{ runner.os }}-
 
-
+      - name: Create .env for CI
+        run: |
+          cat > .env <<'EOF'
+          APP_ENV=test
+          APP_SECRET=ci-secret
+          DATABASE_URL=mysql://recipe:recipe@127.0.0.1:3306/recipe_test?serverVersion=8.4
+          EOF
 
       - name: Install dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
