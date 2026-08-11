@@ -2,9 +2,9 @@
 
 namespace App\Infrastructure\AI;
 
+use Anthropic\Client;
 use App\Application\Recipe\DTO\ImportedRecipeDTO;
 use App\Infrastructure\Import\Parser\RecipeParserInterface;
-use Anthropic\Client;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 final class ClaudeRecipeParser implements RecipeParserInterface
@@ -17,7 +17,7 @@ final class ClaudeRecipeParser implements RecipeParserInterface
     public function parse(
         string $content,
         string $sourceUrl,
-        string $imageUrl
+        string $imageUrl,
     ): ImportedRecipeDTO {
         // Implement the parsing logic here using Claude AI API
         // For now, we'll return a dummy ImportedRecipeDTO for demonstration purposes
@@ -30,7 +30,7 @@ final class ClaudeRecipeParser implements RecipeParserInterface
             maxTokens: 1024,
             messages: [
                 [
-                    'role' => 'user', 
+                    'role' => 'user',
                     'content' => <<<PROMPT
                         You are a recipe extraction engine.
 
@@ -56,7 +56,7 @@ final class ClaudeRecipeParser implements RecipeParserInterface
                         "string"
                         ]
                         }
-                        PROMPT
+                        PROMPT,
                 ]],
             model: 'claude-opus-4-8',
         );

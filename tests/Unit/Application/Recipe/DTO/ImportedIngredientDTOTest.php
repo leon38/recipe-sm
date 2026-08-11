@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Tests\Unit\Application\Recipe\DTO;
 
 use App\Application\Recipe\DTO\ImportedIngredientDTO;

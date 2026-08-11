@@ -1,9 +1,10 @@
 <?php
+
 namespace App\Domain\Recipe\Fixtures;
 
+use App\Domain\Recipe\Entity\Category;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use App\Domain\Recipe\Entity\Category;
 
 final class CategoryFixtures extends Fixture
 {

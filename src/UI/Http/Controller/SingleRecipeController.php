@@ -14,9 +14,9 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/api/recipe')]
 final class SingleRecipeController extends AbstractController
 {
-
     public function __construct(private QueryBusInterface $queryBus)
-    {}
+    {
+    }
 
     #[Route('/{id}', methods: ['GET'])]
     public function __invoke(string $id): JsonResponse

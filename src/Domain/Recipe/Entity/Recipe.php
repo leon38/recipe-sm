@@ -3,16 +3,15 @@
 namespace App\Domain\Recipe\Entity;
 
 use App\Domain\Common\Timestampable;
-use App\Domain\Recipe\ValueObject\ValueId;
 use App\Domain\Recipe\Repository\DoctrineRecipeRepository;
-use Doctrine\Common\Collections\Collection;
+use App\Domain\Recipe\ValueObject\ValueId;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: DoctrineRecipeRepository::class)]
 class Recipe implements \JsonSerializable
 {
-
     use Timestampable;
 
     public function __construct(
@@ -253,11 +252,9 @@ class Recipe implements \JsonSerializable
         $processed = [];
 
         foreach ($newIngredients as $newIngredient) {
-
             $key = $newIngredient->businessKey();
 
             if (isset($existing[$key])) {
-
                 $existing[$key]->update(
                     ingredient: $newIngredient->getIngredient(),
                     quantity: $newIngredient->getQuantity(),
@@ -275,7 +272,6 @@ class Recipe implements \JsonSerializable
         }
 
         foreach ($existing as $key => $ingredient) {
-
             if (isset($processed[$key])) {
                 continue;
             }
@@ -346,7 +342,7 @@ class Recipe implements \JsonSerializable
     }
 
     public function removeStep(Step $step): self
-    {   
+    {
         $this->steps->removeElement($step);
 
         return $this;
@@ -382,7 +378,6 @@ class Recipe implements \JsonSerializable
 
     /**
      * @param Tag[] $tags
-     * @return self
      */
     public function replaceTags(array $tags): self
     {
@@ -431,7 +426,6 @@ class Recipe implements \JsonSerializable
 
     /**
      * @param Category[] $categories
-     * @return self
      */
     public function replaceCategories(iterable $categories): self
     {
@@ -462,7 +456,6 @@ class Recipe implements \JsonSerializable
      */
     public function jsonSerialize(): array
     {
-
         return [
             'id' => (string) $this->id,
             'title' => $this->title,
@@ -472,15 +465,14 @@ class Recipe implements \JsonSerializable
             'prepTime' => $this->prepTime,
             'cookTime' => $this->cookTime,
             'difficulty' => $this->difficulty,
-            'ingredients' => array_map(fn(RecipeIngredient $ingredient) => $ingredient->jsonSerialize(), $this->ingredients->toArray()),
-            'steps' => array_map(fn(Step $step) => $step->jsonSerialize(), $this->steps->toArray()),
+            'ingredients' => array_map(fn (RecipeIngredient $ingredient) => $ingredient->jsonSerialize(), $this->ingredients->toArray()),
+            'steps' => array_map(fn (Step $step) => $step->jsonSerialize(), $this->steps->toArray()),
             'tags' => array_map(fn (Tag $tag) => $tag->jsonSerialize(), $this->tags->toArray()),
         ];
     }
 
     public function __toString(): string
     {
-        return $this->id->getValue() . ' - ' . $this->title;
+        return $this->id->getValue().' - '.$this->title;
     }
-
 }

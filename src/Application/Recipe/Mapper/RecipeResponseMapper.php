@@ -16,7 +16,8 @@ final class RecipeResponseMapper
 {
     public function __construct(
         private UrlHelper $urlHelper,
-    ) {}
+    ) {
+    }
 
     public function map(Recipe $recipe): RecipeResponse
     {
@@ -25,7 +26,7 @@ final class RecipeResponseMapper
             title: $recipe->getTitle(),
             description: $recipe->getDescription(),
             sourceUrl: $recipe->getSourceUrl(),
-            imageUrl: $recipe->getImageUrl() !== '' ? $this->urlHelper->getAbsoluteUrl($recipe->getImageUrl()) : '',
+            imageUrl: '' !== $recipe->getImageUrl() ? $this->urlHelper->getAbsoluteUrl($recipe->getImageUrl()) : '',
             prepTime: $recipe->getPrepTime(),
             cookTime: $recipe->getCookTime(),
             totalTime: $recipe->getPrepTime() + $recipe->getCookTime(),

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Application\Recipe\Factory;
 
 use App\Application\Image\ImageStorageInterface;
@@ -6,7 +7,6 @@ use App\Application\Recipe\Command\UpdateRecipeCommand;
 use App\Application\Recipe\Resolver\CategoryResolver;
 use App\Application\Recipe\Resolver\TagResolver;
 use App\Domain\Recipe\Entity\Recipe;
-
 
 readonly class RecipeUpdater
 {
@@ -23,7 +23,6 @@ readonly class RecipeUpdater
         Recipe $recipe,
         UpdateRecipeCommand $command,
     ): Recipe {
-
         $recipe->update(
             title: $command->title,
             description: $command->description,
@@ -36,15 +35,14 @@ readonly class RecipeUpdater
         );
 
         if ($command->imageUrl !== $recipe->getImageUrl()) {
-
             $this->imageStorage->delete(
                 $recipe->getImageUrl()
             );
 
             $imageUrl = $this->imageStorage->store(
-                    $command->imageUrl,
-                    $recipe->getId()
-                );
+                $command->imageUrl,
+                $recipe->getId()
+            );
 
             $recipe->setImageUrl($imageUrl);
         }

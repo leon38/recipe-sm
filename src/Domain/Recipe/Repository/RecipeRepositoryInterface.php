@@ -12,5 +12,5 @@ interface RecipeRepositoryInterface
 
     public function get(ValueId $valueId): Recipe;
 
-    public function find(mixed $id, LockMode|int|null $lockMode = null, int|null $lockVersion = null): ?Recipe;
+    public function find(mixed $id, LockMode|int|null $lockMode = null, ?int $lockVersion = null): ?Recipe;
 }

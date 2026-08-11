@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Domain\Recipe\Enum;
 
 enum Difficulty: string

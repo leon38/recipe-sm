@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Util;
 
-use App\Domain\Recipe\Entity\Recipe;
 use App\Domain\Recipe\Entity\Category;
 use App\Domain\Recipe\Entity\Ingredient;
+use App\Domain\Recipe\Entity\Recipe;
 use App\Domain\Recipe\Entity\Tag;
 use PHPUnit\Framework\Assert;
 
@@ -15,7 +15,7 @@ final class AssertRecipe
     public static function hasIngredient(Recipe $recipe, string $name): void
     {
         Assert::assertTrue(
-            self::containsName($recipe->getIngredients(), $name, static fn (Ingredient $ingredient): string => $ingredient->getName(),),
+            self::containsName($recipe->getIngredients(), $name, static fn (Ingredient $ingredient): string => $ingredient->getName()),
             sprintf('La recette n\'a pas d\'ingrédient nommé "%s".', $name)
         );
     }
@@ -23,7 +23,7 @@ final class AssertRecipe
     public static function doesNotHaveIngredient(Recipe $recipe, string $name): void
     {
         Assert::assertFalse(
-            self::containsName($recipe->getIngredients(), $name, static fn (Ingredient $ingredient): string => $ingredient->getName(),),
+            self::containsName($recipe->getIngredients(), $name, static fn (Ingredient $ingredient): string => $ingredient->getName()),
             sprintf('La recette a un ingrédient nommé "%s" alors qu\'elle ne devrait pas.', $name)
         );
     }
@@ -47,7 +47,7 @@ final class AssertRecipe
     public static function hasCategory(Recipe $recipe, string $name): void
     {
         Assert::assertTrue(
-            self::containsName($recipe->getCategories(), $name, static fn (Category $category): string => $category->getName(),),
+            self::containsName($recipe->getCategories(), $name, static fn (Category $category): string => $category->getName()),
             sprintf('La recette n\'a pas de catégorie nommée "%s".', $name)
         );
     }
@@ -55,7 +55,7 @@ final class AssertRecipe
     public static function doesNotHaveCategory(Recipe $recipe, string $name): void
     {
         Assert::assertFalse(
-            self::containsName($recipe->getCategories(), $name, static fn (Category $category): string => $category->getName(),),
+            self::containsName($recipe->getCategories(), $name, static fn (Category $category): string => $category->getName()),
             sprintf('La recette a une catégorie nommée "%s" alors qu\'elle ne devrait pas.', $name)
         );
     }

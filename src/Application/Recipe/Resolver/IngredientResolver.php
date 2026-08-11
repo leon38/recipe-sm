@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Application\Recipe\Resolver;
 
 use App\Domain\Recipe\Entity\Ingredient;
@@ -19,7 +20,7 @@ final readonly class IngredientResolver
 
         $ingredient = $this->repository->findOneByNormalizedName($normalizedName);
 
-        if ($ingredient !== null) {
+        if (null !== $ingredient) {
             return $ingredient;
         }
 

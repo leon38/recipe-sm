@@ -1,14 +1,16 @@
 <?php
+
 namespace App\Infrastructure\Import\Parser;
 
 class ContentExtractor
 {
-
     /**
      * Checks if a line contains any of the specified headers.
-     * @param string $line The line to check.
-     * @param array<string> $headers The headers to look for.
-     * @return bool True if the line contains any of the headers, false otherwise.
+     *
+     * @param string        $line    the line to check
+     * @param array<string> $headers the headers to look for
+     *
+     * @return bool true if the line contains any of the headers, false otherwise
      */
     public function containsHeader(string $line, array $headers): bool
     {
@@ -36,5 +38,4 @@ class ContentExtractor
 
         return trim($line);
     }
-
 }

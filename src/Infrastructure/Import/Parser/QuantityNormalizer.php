@@ -1,9 +1,9 @@
 <?php
+
 namespace App\Infrastructure\Import\Parser;
 
 final class QuantityNormalizer
 {
-
     private const QUANTITY_ALIASES = [
         '1,5' => 1.5,
         '½' => 0.5,
@@ -16,13 +16,13 @@ final class QuantityNormalizer
 
     public function normalize(?string $quantity): ?float
     {
-        if ($quantity === null) {
+        if (null === $quantity) {
             return null;
         }
 
         $quantity = trim($quantity);
 
-        if ($quantity === '') {
+        if ('' === $quantity) {
             return null;
         }
 

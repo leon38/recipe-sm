@@ -1,6 +1,6 @@
 <?php
-namespace App\Application\Recipe\Command;
 
+namespace App\Application\Recipe\Command;
 
 final class UpdateRecipeCommand
 {
@@ -24,6 +24,5 @@ final class UpdateRecipeCommand
         /** @var array<int,array<string,mixed>> */
         public array $categories = [],
     ) {
-
     }
 }

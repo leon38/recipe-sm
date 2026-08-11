@@ -19,7 +19,7 @@ final class IngredientExtractor extends ContentExtractor
         'c. à c',
         'c. à c.',
         'c. à s.',
-        'c. soupe', 
+        'c. soupe',
         'cuillère à soupe',
         'cuillère à café',
         'cuillères à soupe',
@@ -40,14 +40,15 @@ final class IngredientExtractor extends ContentExtractor
         'pour la pâte',
         'pour la garniture',
         'vous aurez besoin de',
-        'liste des ingrédients'
+        'liste des ingrédients',
     ];
 
     public function __construct(
         private UnitNormalizer $unitNormalizer,
         private QuantityNormalizer $quantityNormalizer,
         private IngredientNameNormalizer $ingredientNameNormalizer,
-    ) {}
+    ) {
+    }
 
     /**
      * @return ImportedIngredientDTO[]
@@ -57,15 +58,14 @@ final class IngredientExtractor extends ContentExtractor
         $lines = preg_split('/\R/', $content);
 
         $start = $this->findIngredientsStart($lines);
-    
+
         $ingredients = [];
 
-        for ($i = $start; $i < count($lines); $i++) {
-
+        for ($i = $start; $i < count($lines); ++$i) {
             $line = str_replace(['-', '*', '•'], '', $lines[$i]);
             $line = trim($line);
 
-            if ($line === '') {
+            if ('' === $line) {
                 continue;
             }
 
@@ -76,7 +76,7 @@ final class IngredientExtractor extends ContentExtractor
 
             $ingredient = $this->extractStructuredIngredient($line);
 
-            if ($ingredient !== null) {
+            if (null !== $ingredient) {
                 $ingredients[] = $ingredient;
             }
         }
@@ -87,7 +87,6 @@ final class IngredientExtractor extends ContentExtractor
     private function extractStructuredIngredient(
         string $line,
     ): ?ImportedIngredientDTO {
-
         $unitsPattern = implode('|', array_map('preg_quote', self::UNITS));
 
         $pattern = sprintf(
@@ -105,7 +104,7 @@ final class IngredientExtractor extends ContentExtractor
         $unit = $this->unitNormalizer->normalize($unit);
 
         $quantity = $this->quantityNormalizer->normalize($matches[1][0]);
-        
+
         $name = $this->ingredientNameNormalizer->normalize($matches[3][0]);
 
         return new ImportedIngredientDTO(
@@ -117,13 +116,14 @@ final class IngredientExtractor extends ContentExtractor
 
     /**
      * Finds the starting index of the ingredients section.
-     * @param array<string> $lines The lines of the content.
-     * @return int The index of the first ingredient line.
+     *
+     * @param array<string> $lines the lines of the content
+     *
+     * @return int the index of the first ingredient line
      */
     private function findIngredientsStart(array $lines): int
     {
         foreach ($lines as $index => $line) {
-
             $normalized = $this->normalize($line);
 
             foreach (self::INGREDIENT_HEADERS as $header) {
@@ -136,10 +136,8 @@ final class IngredientExtractor extends ContentExtractor
         return 0;
     }
 
-
     private function looksLikePreparationHeader(string $line): bool
     {
         return $this->containsHeader($line, StepExtractor::PREPARATION_HEADERS);
     }
-    
 }

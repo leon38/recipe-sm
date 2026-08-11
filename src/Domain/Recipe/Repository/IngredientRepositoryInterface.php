@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Domain\Recipe\Repository;
 
 use App\Domain\Recipe\Entity\Ingredient;

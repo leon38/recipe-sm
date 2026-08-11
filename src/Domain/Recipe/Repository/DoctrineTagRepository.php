@@ -1,8 +1,9 @@
 <?php
+
 namespace App\Domain\Recipe\Repository;
 
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use App\Domain\Recipe\Entity\Tag;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Tag>
@@ -15,11 +16,10 @@ final class DoctrineTagRepository extends ServiceEntityRepository implements Tag
     }
 
     /**
-     * @param array<string, mixed> $criteria
+     * @param array<string, mixed>      $criteria
      * @param array<string, mixed>|null $orderBy
-     * @param int|null $limit
-     * @param int|null $offset
-     * @return array<\App\Domain\Recipe\Entity\Tag>
+     *
+     * @return array<Tag>
      */
     public function findBy(array $criteria, ?array $orderBy = null, ?int $limit = null, ?int $offset = null): array
     {

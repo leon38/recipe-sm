@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Application\Recipe\Factory;
 
 use App\Application\Image\ImageStorageInterface;
@@ -29,7 +30,7 @@ readonly class RecipeFactory
             servings: $command->servings,
             season: $command->season,
             sourceUrl: $command->sourceUrl,
-            imageUrl: "",
+            imageUrl: '',
         );
 
         $imageUrl = $this->imageStorage->store(

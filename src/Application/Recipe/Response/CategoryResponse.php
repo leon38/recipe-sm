@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Application\Recipe\Response;
 
 final class CategoryResponse implements \JsonSerializable

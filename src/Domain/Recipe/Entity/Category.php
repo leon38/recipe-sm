@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Domain\Recipe\Entity;
 
 use App\Domain\Recipe\ValueObject\ValueId;
@@ -104,6 +105,6 @@ final class Category implements \JsonSerializable
 
     public function __toString(): string
     {
-        return $this->id->getValue() . ' - ' . $this->name;
+        return $this->id->getValue().' - '.$this->name;
     }
 }

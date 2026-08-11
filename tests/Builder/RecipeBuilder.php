@@ -49,7 +49,6 @@ final class RecipeBuilder extends AbstractBuilder
 
     private \DateTimeImmutable $createdAt;
     private \DateTimeImmutable $updatedAt;
-    
 
     private function __construct()
     {

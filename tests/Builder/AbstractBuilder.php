@@ -25,12 +25,12 @@ abstract class AbstractBuilder
 
     protected function generateDate(string $date): \DateTimeImmutable
     {
-        return (new \DateTimeImmutable($date));
+        return new \DateTimeImmutable($date);
     }
 
     /**
      * @param array<mixed> $collection
-     * @param mixed $value
+     *
      * @return array<mixed>
      */
     protected function append(array $collection, mixed $value): array

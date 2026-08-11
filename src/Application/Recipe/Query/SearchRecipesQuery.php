@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Application\Recipe\Query;
 
 use App\Domain\Recipe\Enum\Difficulty;

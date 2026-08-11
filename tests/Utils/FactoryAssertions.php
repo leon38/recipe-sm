@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Tests\Utils;
 
 use PHPUnit\Framework\Assert;
@@ -9,7 +10,6 @@ trait FactoryAssertions
     {
         Assert::assertTrue(!is_null($entity->getId()));
     }
-
 
     protected function assertInitializedTimestamps(object $entity): void
     {

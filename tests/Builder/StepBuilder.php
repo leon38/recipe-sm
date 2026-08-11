@@ -15,7 +15,6 @@ final class StepBuilder
 
     private string $instruction = 'Ajouter le sucre, la farine et la levure';
 
-
     private function __construct()
     {
         $this->id = ValueId::generate();
@@ -46,7 +45,6 @@ final class StepBuilder
 
         return $this;
     }
-
 
     public function build(): Step
     {

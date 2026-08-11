@@ -6,7 +6,7 @@ use App\Application\Recipe\Command\ImportRecipeFromUrlCommand;
 use App\Application\Recipe\CommandHandler\ImportRecipeFromUrlHandler;
 use App\UI\Http\Request\ImportRecipeRequest;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse; 
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Routing\Attribute\Route;
 

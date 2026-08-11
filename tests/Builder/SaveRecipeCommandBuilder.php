@@ -44,7 +44,7 @@ class SaveRecipeCommandBuilder
     public function withDescription(?string $description): self
     {
         $this->description = $description;
-        
+
         return $this;
     }
 

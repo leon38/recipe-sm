@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Infrastructure\Import\Parser;
 
 final class IngredientNameNormalizer
@@ -32,10 +33,8 @@ final class IngredientNameNormalizer
 
         $normalized = [];
 
-
         foreach ($words as $word) {
-
-            if ($word === '') {
+            if ('' === $word) {
                 continue;
             }
 

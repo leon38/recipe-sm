@@ -5,14 +5,12 @@ declare(strict_types=1);
 namespace App\Tests\Builder;
 
 use App\Domain\Recipe\Entity\Tag;
-use App\Domain\Recipe\ValueObject\ValueId;
 
 final class TagBuilder
 {
     private int $id;
 
     private string $name = '#réconfortant';
-
 
     private function __construct()
     {
@@ -37,7 +35,6 @@ final class TagBuilder
 
         return $this;
     }
-
 
     public function build(): Tag
     {

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Application\Recipe\Command;
 
 final class SaveRecipeCommand
@@ -22,6 +23,5 @@ final class SaveRecipeCommand
         /** @var array<int,array<string,mixed>> */
         public array $categories = [],
     ) {
-
     }
 }

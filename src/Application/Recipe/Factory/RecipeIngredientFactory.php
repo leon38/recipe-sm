@@ -1,8 +1,9 @@
 <?php
+
 namespace App\Application\Recipe\Factory;
 
-use App\Domain\Recipe\Entity\RecipeIngredient;
 use App\Application\Recipe\Resolver\IngredientResolver;
+use App\Domain\Recipe\Entity\RecipeIngredient;
 
 final readonly class RecipeIngredientFactory
 {
@@ -13,6 +14,7 @@ final readonly class RecipeIngredientFactory
 
     /**
      * @param array<int,array<string,mixed>> $ingredients
+     *
      * @return RecipeIngredient[]
      */
     public function createMany(array $ingredients): array
@@ -20,7 +22,6 @@ final readonly class RecipeIngredientFactory
         $recipeIngredients = [];
 
         foreach ($ingredients as $ingredientData) {
-
             $ingredient = $this->ingredientResolver->resolve(
                 $ingredientData['name']
             );

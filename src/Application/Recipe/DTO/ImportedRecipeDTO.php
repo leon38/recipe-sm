@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Application\Recipe\DTO;
 
 use Symfony\Component\Validator\Constraints as Assert;
@@ -19,21 +20,20 @@ final readonly class ImportedRecipeDTO
         public ?int $servings = null,
         #[Assert\Choice(callback: [\App\Domain\Recipe\Enum\Season::class, 'cases'])]
         public ?string $season = null,
-        
+
         /** @var ImportedIngredientDTO[] */
         #[Assert\Length(min: 1)]
         public array $ingredients = [],
-        
+
         /** @var ImportedStepDTO[] */
         #[Assert\Length(min: 1)]
         public array $steps = [],
-        
+
         /** @var ImportedTagDTO[] */
         public array $tags = [],
-        
+
         /** @var ImportedCategoryDTO[] */
         public array $categories = [],
-        
     ) {
     }
 }

@@ -12,11 +12,11 @@ final class ValueIdType extends StringType
 
     public function convertToPHPValue(mixed $value, AbstractPlatform $platform): ?ValueId
     {
-        return $value !== null ? ValueId::fromString($value) : null;
+        return null !== $value ? ValueId::fromString($value) : null;
     }
 
     public function convertToDatabaseValue(mixed $value, AbstractPlatform $platform): ?string
     {
-        return $value !== null ? (string) $value : null;
+        return null !== $value ? (string) $value : null;
     }
 }

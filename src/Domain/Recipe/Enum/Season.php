@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Domain\Recipe\Enum;
 
 enum Season: string
@@ -8,5 +9,4 @@ enum Season: string
     case AUTUMN = 'automne';
     case WINTER = 'hiver';
     case ALL_SEASONS = 'toutes saisons';
-
 }

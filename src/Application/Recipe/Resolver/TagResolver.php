@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Application\Recipe\Resolver;
 
 use App\Domain\Recipe\Entity\Tag;
@@ -13,6 +14,7 @@ final class TagResolver
 
     /**
      * @param array<array<string, string>> $tags
+     *
      * @return Tag[]
      */
     public function resolve(array $tags): array
@@ -21,15 +23,16 @@ final class TagResolver
             ['name' => array_column($tags, 'name')],
         );
 
-        $tagNames = array_map(fn(Tag $tag) => $tag->getName(), $existingTags);
+        $tagNames = array_map(fn (Tag $tag) => $tag->getName(), $existingTags);
 
-        foreach($tags as $tagData) {
+        foreach ($tags as $tagData) {
             if (!in_array($tagData['name'], $tagNames)) {
                 $existingTags[] = new Tag(
                     name: $tagData['name'],
                 );
             }
         }
+
         return $existingTags;
     }
 }

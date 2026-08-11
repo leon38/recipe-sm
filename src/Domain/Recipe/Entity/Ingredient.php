@@ -1,14 +1,14 @@
 <?php
+
 namespace App\Domain\Recipe\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use App\Domain\Recipe\ValueObject\ValueId;
 use App\Domain\Recipe\Repository\DoctrineIngredientRepository;
+use App\Domain\Recipe\ValueObject\ValueId;
+use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: DoctrineIngredientRepository::class)]
 final class Ingredient
 {
-
     public function __construct(
         #[ORM\Id]
         #[ORM\Column(type: 'value_id', length: 64)]
@@ -19,7 +19,6 @@ final class Ingredient
         private string $normalizedName,
     ) {
     }
-    
 
     public static function create(string $name): self
     {

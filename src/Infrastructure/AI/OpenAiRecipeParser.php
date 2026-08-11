@@ -18,9 +18,8 @@ final readonly class OpenAiRecipeParser implements RecipeParserInterface
     public function parse(
         string $content,
         string $sourceUrl,
-        string $imageUrl
+        string $imageUrl,
     ): ImportedRecipeDTO {
-
         $response = $this->client->chat()->create([
             'model' => 'gpt-4.1-mini',
             'temperature' => 0,
@@ -52,7 +51,7 @@ Schema:
     "string"
   ]
 }
-PROMPT
+PROMPT,
                 ],
                 [
                     'role' => 'user',
@@ -63,7 +62,7 @@ PROMPT
                 'type' => 'json_object',
             ],
         ]);
-        
+
         $json = json_decode(
             $response->choices[0]->message->content,
             true,
@@ -73,7 +72,6 @@ PROMPT
         $ingredients = [];
 
         foreach ($json['ingredients'] ?? [] as $ingredient) {
-
             $ingredients[] = new ImportedIngredientDTO(
                 name: $ingredient['name'],
                 quantity: $ingredient['quantity'],
@@ -84,7 +82,6 @@ PROMPT
         $steps = [];
 
         foreach ($json['steps'] ?? [] as $step) {
-
             $steps[] = new ImportedStepDTO(
                 instruction: $step,
             );

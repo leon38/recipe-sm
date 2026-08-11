@@ -20,7 +20,7 @@ final class OpenGraphExtractor implements OpenGraphExtractorInterface
 
         $image = $this->getMetaContent($crawler, 'og:image')
             ?? $this->getMetaContent($crawler, 'twitter:image')
-            ?? null;   
+            ?? null;
 
         return new OpenGraphData(
             title: $title,
@@ -33,7 +33,7 @@ final class OpenGraphExtractor implements OpenGraphExtractorInterface
     {
         $node = $crawler->filter("meta[property=\"$property\"], meta[name=\"$property\"]");
 
-        if ($node->count() === 0) {
+        if (0 === $node->count()) {
             return null;
         }
 
@@ -44,7 +44,7 @@ final class OpenGraphExtractor implements OpenGraphExtractorInterface
     {
         $node = $crawler->filter('title');
 
-        if ($node->count() === 0) {
+        if (0 === $node->count()) {
             return null;
         }
 

@@ -1,12 +1,12 @@
 <?php
+
 namespace App\Application\Recipe\Query;
 
+use App\Application\Recipe\Mapper\RecipeResponseMapper;
 use App\Application\Recipe\Response\PaginatedResponse;
 use App\Domain\Recipe\Entity\Recipe;
-use App\Application\Recipe\Mapper\RecipeResponseMapper;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-
 
 /**
  * @extends ServiceEntityRepository<Recipe>
@@ -37,11 +37,10 @@ final class DoctrineRecipeReadRepository extends ServiceEntityRepository impleme
             ->getResult();
 
         return new PaginatedResponse(
-            items: array_map(fn(Recipe $recipe): array => $this->recipeResponseMapper->map($recipe)->jsonSerialize(), $recipes),
+            items: array_map(fn (Recipe $recipe): array => $this->recipeResponseMapper->map($recipe)->jsonSerialize(), $recipes),
             page: $query->page,
             perPage: $query->perPage,
             total: $total
         );
-
     }
 }

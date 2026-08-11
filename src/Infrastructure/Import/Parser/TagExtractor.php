@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Infrastructure\Import\Parser;
 
 use App\Application\Recipe\DTO\ImportedTagDTO;

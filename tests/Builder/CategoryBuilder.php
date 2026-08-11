@@ -13,7 +13,6 @@ final class CategoryBuilder extends AbstractBuilder
 
     private string $name = 'Dessert';
 
-
     private function __construct()
     {
         $this->id = ValueId::generate();
@@ -37,7 +36,6 @@ final class CategoryBuilder extends AbstractBuilder
 
         return $this;
     }
-
 
     public function build(): Category
     {

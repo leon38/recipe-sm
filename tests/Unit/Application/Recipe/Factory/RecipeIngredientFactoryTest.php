@@ -33,7 +33,7 @@ final class RecipeIngredientFactoryTest extends ApplicationTestCase
                     'name' => 'Farine',
                     'quantity' => 250,
                     'unit' => 'g',
-                ]
+                ],
             ]
         );
 
@@ -50,7 +50,7 @@ final class RecipeIngredientFactoryTest extends ApplicationTestCase
                     'name' => 'farine',
                     'quantity' => 3,
                     'unit' => null,
-                ]
+                ],
             ]
         );
 
@@ -65,7 +65,7 @@ final class RecipeIngredientFactoryTest extends ApplicationTestCase
                     'name' => 'farine',
                     'quantity' => 3,
                     'unit' => 'oz',
-                ]
+                ],
             ]
         );
 
@@ -80,7 +80,7 @@ final class RecipeIngredientFactoryTest extends ApplicationTestCase
                     'name' => 'eau',
                     'quantity' => 12.5,
                     'unit' => 'cl',
-                ]
+                ],
             ]
         );
 

@@ -1,12 +1,12 @@
 <?php
+
 namespace App\Domain\Common;
 
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Mapping as ORM;
 
 trait Timestampable
 {
-    
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     protected \DateTimeImmutable $createdAt;
 

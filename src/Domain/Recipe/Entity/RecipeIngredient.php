@@ -19,7 +19,7 @@ class RecipeIngredient implements \JsonSerializable
         #[ORM\Column(type: 'value_id', length: 64)]
         private ValueId $id,
         #[ORM\ManyToOne(
-        targetEntity: Ingredient::class
+            targetEntity: Ingredient::class
         )]
         private Ingredient $ingredient,
         #[ORM\Column(type: 'string', length: 255)]

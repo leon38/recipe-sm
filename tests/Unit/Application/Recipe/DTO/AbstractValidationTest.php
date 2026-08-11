@@ -26,7 +26,7 @@ abstract class AbstractValidationTest extends KernelTestCase
 
     protected function assertViolationCount(
         object $dto,
-        int $count
+        int $count,
     ): void {
         self::assertCount(
             $count,

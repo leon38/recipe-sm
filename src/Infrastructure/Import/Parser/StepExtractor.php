@@ -26,14 +26,13 @@ final class StepExtractor extends ContentExtractor
      */
     public function extract(string $content): array
     {
-
         $lines = preg_split('/\R/', $content);
         $start = $this->findPreparationStart($lines);
 
         $steps = [];
-        for ($i = $start; $i < count($lines); $i++) {
+        for ($i = $start; $i < count($lines); ++$i) {
             $line = trim($lines[$i]);
-            if ($line !== '') {
+            if ('' !== $line) {
                 $steps[] = new ImportedStepDTO(
                     instruction: trim($lines[$i]),
                 );
@@ -45,13 +44,14 @@ final class StepExtractor extends ContentExtractor
 
     /**
      * Finds the starting index of the preparation steps section.
-     * @param array<string> $lines The lines of the content.
-     * @return int The index of the first preparation step line.
+     *
+     * @param array<string> $lines the lines of the content
+     *
+     * @return int the index of the first preparation step line
      */
     private function findPreparationStart(array $lines): int
     {
         foreach ($lines as $index => $line) {
-
             $normalized = $this->normalize($line);
 
             foreach (self::PREPARATION_HEADERS as $header) {

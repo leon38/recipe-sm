@@ -1,8 +1,9 @@
 <?php
+
 namespace App\Application\Recipe\Mapper;
 
-use App\Domain\Recipe\Entity\Category;
 use App\Application\Recipe\Response\CategoryResponse;
+use App\Domain\Recipe\Entity\Category;
 
 final class CategoryResponseMapper
 {

@@ -4,22 +4,21 @@ declare(strict_types=1);
 
 namespace App\Tests\Application\Recipe\Factory;
 
+use App\Application\Image\ImageStorageInterface;
 use App\Application\Recipe\Factory\RecipeFactory;
 use App\Application\Recipe\Factory\RecipeIngredientFactory;
 use App\Application\Recipe\Factory\StepFactory;
 use App\Application\Recipe\Resolver\CategoryResolver;
 use App\Application\Recipe\Resolver\IngredientResolver;
 use App\Application\Recipe\Resolver\TagResolver;
-use App\Application\Image\ImageStorageInterface;
 use App\Infrastructure\Import\Parser\IngredientNameNormalizer;
 use App\Tests\ApplicationTestCase;
-use App\Tests\Utils\FactoryAssertions;
 use App\Tests\Builder\CategoryBuilder;
 use App\Tests\Builder\SaveRecipeCommandBuilder;
+use App\Tests\Utils\FactoryAssertions;
 
 final class RecipeFactoryTest extends ApplicationTestCase
 {
-
     use FactoryAssertions;
 
     private RecipeIngredientFactory $ingredientFactory;

@@ -9,6 +9,6 @@ interface RecipeParserInterface
     public function parse(
         string $content,
         string $sourceUrl,
-        string $imageUrl
+        string $imageUrl,
     ): ImportedRecipeDTO;
 }

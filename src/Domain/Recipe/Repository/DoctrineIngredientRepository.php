@@ -1,12 +1,12 @@
 <?php
+
 namespace App\Domain\Recipe\Repository;
 
 use App\Domain\Recipe\Entity\Ingredient;
-use App\Domain\Recipe\Repository\IngredientRepositoryInterface;
+use App\Domain\Recipe\ValueObject\ValueId;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\LockMode;
 use Doctrine\Persistence\ManagerRegistry;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use App\Domain\Recipe\ValueObject\ValueId;
 
 /**
  * @extends ServiceEntityRepository<Ingredient>
@@ -20,7 +20,6 @@ final class DoctrineIngredientRepository extends ServiceEntityRepository impleme
 
     public function save(Ingredient $ingredient): void
     {
-        
         $this->registry->getManager()->persist($ingredient);
         $this->registry->getManager()->flush();
     }
@@ -32,11 +31,8 @@ final class DoctrineIngredientRepository extends ServiceEntityRepository impleme
 
     /**
      * @param ValueId $id
-     * @param LockMode|int|null $lockMode
-     * @param int|null $lockVersion
-     * @return Ingredient|null
      */
-    public function find(mixed $id, LockMode|int|null $lockMode = null, int|null $lockVersion = null): ?Ingredient
+    public function find(mixed $id, LockMode|int|null $lockMode = null, ?int $lockVersion = null): ?Ingredient
     {
         return parent::find($id, $lockMode, $lockVersion);
     }

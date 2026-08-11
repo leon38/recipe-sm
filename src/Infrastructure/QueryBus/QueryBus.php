@@ -1,9 +1,10 @@
 <?php
+
 namespace App\Infrastructure\QueryBus;
 
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Messenger\Stamp\HandledStamp;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 final readonly class QueryBus implements QueryBusInterface
 {

@@ -3,10 +3,10 @@
 namespace App\Application\Recipe\CommandHandler;
 
 use App\Application\Recipe\Command\ImportRecipeFromUrlCommand;
-use App\Domain\Recipe\Entity\RecipeIngredient;
-use App\Domain\Recipe\Entity\Recipe;
-use App\Domain\Recipe\Entity\Step;
 use App\Application\Recipe\Service\RecipeImporterRegistry;
+use App\Domain\Recipe\Entity\Recipe;
+use App\Domain\Recipe\Entity\RecipeIngredient;
+use App\Domain\Recipe\Entity\Step;
 
 final class ImportRecipeFromUrlHandler
 {
@@ -35,7 +35,6 @@ final class ImportRecipeFromUrlHandler
         );
 
         foreach ($dto->ingredients as $ingredient) {
-
             $recipe->addIngredient(
                 RecipeIngredient::create(
                     name: $ingredient->name,
@@ -46,7 +45,6 @@ final class ImportRecipeFromUrlHandler
         }
 
         foreach ($dto->steps as $index => $step) {
-
             $recipe->addStep(
                 Step::create(
                     position: $index + 1,

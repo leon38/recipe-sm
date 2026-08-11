@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Domain\Recipe\Repository;
 
 use App\Domain\Recipe\Entity\Category;
@@ -12,6 +13,7 @@ final class DoctrineCategoryRepository implements CategoryRepositoryInterface
 
     /**
      * @param array<string, mixed> $criteria
+     *
      * @return Category[]
      */
     public function findBy(array $criteria): array

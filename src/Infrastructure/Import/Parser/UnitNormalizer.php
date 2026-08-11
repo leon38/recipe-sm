@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Infrastructure\Import\Parser;
 
 use App\Domain\Recipe\Enum\Unit;
@@ -36,13 +37,13 @@ final class UnitNormalizer
 
     public function normalize(?string $unit): ?string
     {
-        if ($unit === null) {
+        if (null === $unit) {
             return null;
         }
 
         $unit = trim($unit);
 
-        if ($unit === '') {
+        if ('' === $unit) {
             return null;
         }
 

@@ -3,11 +3,10 @@
 namespace App\Domain\Recipe\Repository;
 
 use App\Domain\Recipe\Entity\Recipe;
-use App\Domain\Recipe\Repository\RecipeRepositoryInterface;
+use App\Domain\Recipe\ValueObject\ValueId;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\LockMode;
 use Doctrine\Persistence\ManagerRegistry;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use App\Domain\Recipe\ValueObject\ValueId;
 
 /**
  * @extends ServiceEntityRepository<Recipe>
@@ -44,11 +43,8 @@ final class DoctrineRecipeRepository extends ServiceEntityRepository implements 
 
     /**
      * @param ValueId $id
-     * @param LockMode|int|null $lockMode
-     * @param int|null $lockVersion
-     * @return Recipe|null
      */
-    public function find(mixed $id, LockMode|int|null $lockMode = null, int|null $lockVersion = null): ?Recipe
+    public function find(mixed $id, LockMode|int|null $lockMode = null, ?int $lockVersion = null): ?Recipe
     {
         return parent::find($id, $lockMode, $lockVersion);
     }

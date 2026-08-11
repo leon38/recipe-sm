@@ -62,7 +62,7 @@ final class RecipeResponseBuilder extends AbstractBuilder
     public function withIngredient(string $name, float $quantity = 1, ?string $unit = null): self
     {
         $this->ingredients = $this->append(
-            $this->ingredients, 
+            $this->ingredients,
             new IngredientResponse(
                 id: (string) ValueId::generate(),
                 name: $name,
@@ -77,7 +77,7 @@ final class RecipeResponseBuilder extends AbstractBuilder
     public function withStep(string $instruction): self
     {
         $this->steps = $this->append(
-            $this->steps, 
+            $this->steps,
             new StepResponse(
                 id: (string) ValueId::generate(),
                 position: count($this->steps) + 1,
@@ -93,7 +93,7 @@ final class RecipeResponseBuilder extends AbstractBuilder
         $this->tags = $this->append(
             $this->tags,
             new TagResponse(
-                id: "1",
+                id: '1',
                 name: $name,
             )
         );
@@ -121,7 +121,7 @@ final class RecipeResponseBuilder extends AbstractBuilder
         return $this;
     }
 
-     public function withUpdatedAt(?string $datetime = null): self
+    public function withUpdatedAt(?string $datetime = null): self
     {
         $this->updatedAt = $datetime ? $this->generateDate($datetime) : $this->now();
 

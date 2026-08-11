@@ -9,11 +9,10 @@ use App\Application\Image\ImageStorageInterface;
 use App\Domain\Recipe\ValueObject\ValueId;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Filesystem\Filesystem;
-use RuntimeException;
 
 final class FilesystemImageStorage implements ImageStorageInterface
 {
-    public function __construct( 
+    public function __construct(
         private readonly Filesystem $filesystem,
         #[Autowire('%kernel.project_dir%/public/uploads/recipes')]
         private string $uploadDirectory,
@@ -35,14 +34,14 @@ final class FilesystemImageStorage implements ImageStorageInterface
 
         $binary = base64_decode($matches['data'], true);
 
-        if ($binary === false) {
-            throw new RuntimeException('Invalid base64 image.');
+        if (false === $binary) {
+            throw new \RuntimeException('Invalid base64 image.');
         }
 
         $resource = imagecreatefromstring($binary);
 
-        if ($resource === false) {
-            throw new RuntimeException('Unable to decode image.');
+        if (false === $resource) {
+            throw new \RuntimeException('Unable to decode image.');
         }
 
         if (!is_dir($this->uploadDirectory)) {
@@ -63,7 +62,7 @@ final class FilesystemImageStorage implements ImageStorageInterface
 
         if (!imagewebp($resource, $path, $this->quality)) {
             unset($resource);
-            throw new RuntimeException('Unable to save image.');
+            throw new \RuntimeException('Unable to save image.');
         }
 
         return sprintf(

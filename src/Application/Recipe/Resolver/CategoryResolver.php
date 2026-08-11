@@ -1,8 +1,9 @@
 <?php
+
 namespace App\Application\Recipe\Resolver;
 
-use App\Domain\Recipe\Repository\CategoryRepositoryInterface;
 use App\Domain\Recipe\Entity\Category;
+use App\Domain\Recipe\Repository\CategoryRepositoryInterface;
 
 final class CategoryResolver
 {
@@ -13,6 +14,7 @@ final class CategoryResolver
 
     /**
      * @param array<array<string, string>> $categories
+     *
      * @return Category[]
      */
     public function resolve(array $categories): array
@@ -21,16 +23,16 @@ final class CategoryResolver
             ['id' => array_column($categories, 'id')],
         );
 
-        $categoryIds = array_map(fn(Category $category) => $category->getId()->getValue(), $existingCategories);
-        
+        $categoryIds = array_map(fn (Category $category) => $category->getId()->getValue(), $existingCategories);
+
         foreach ($categories as $categoryData) {
             if (!in_array($categoryData['id'], $categoryIds)) {
                 $existingCategories[] = Category::create(
                     name: $categoryData['name'],
-                    );
+                );
             }
         }
-                    
+
         return $existingCategories;
     }
 }

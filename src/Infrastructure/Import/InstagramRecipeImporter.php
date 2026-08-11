@@ -30,7 +30,7 @@ final class InstagramRecipeImporter implements RecipeImporterInterface
 
         $title = nl2br($og->title ?? 'Sans titre');
 
-        $title = mb_substr($title, 0, (strpos($title, "<br />") - 6) ?: 255);
+        $title = mb_substr($title, 0, (strpos($title, '<br />') - 6) ?: 255);
 
         return $this->recipeParser->parse(
             content: implode("\n", [

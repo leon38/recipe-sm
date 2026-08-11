@@ -1,32 +1,33 @@
 <?php
+
 namespace App\Tests\Builder;
 
 use App\Application\Recipe\Command\UpdateRecipeCommand;
-use App\Domain\Recipe\ValueObject\ValueId;
 use App\Domain\Recipe\Enum\Difficulty;
 use App\Domain\Recipe\Enum\Season;
+use App\Domain\Recipe\ValueObject\ValueId;
 
 final class UpdateRecipeCommandBuilder
 {
     private string $id;
-    protected string $title = 'Brownie';
-    protected ?string $description = 'Délicieux brownie';
+    private string $title = 'Brownie';
+    private ?string $description = 'Délicieux brownie';
     public int $prepTime = 15;
     public int $cookTime = 30;
     public int $servings = 4;
-    protected string $difficulty = Difficulty::EASY->value;
-    protected string $season = Season::ALL_SEASONS->value;
-    protected ?string $sourceUrl = 'https://instagram.com/p/123';
-    protected string $imageUrl = 'https://picsum.photos/600/400';
+    private string $difficulty = Difficulty::EASY->value;
+    private string $season = Season::ALL_SEASONS->value;
+    private ?string $sourceUrl = 'https://instagram.com/p/123';
+    private string $imageUrl = 'https://picsum.photos/600/400';
 
     /** @var array<array<string, mixed>> */
-    protected array $ingredients = [];
+    private array $ingredients = [];
     /** @var array<array<string, mixed>> */
-    protected array $steps = [];
+    private array $steps = [];
     /** @var array<array<string, mixed>> */
-    protected array $tags = [];
+    private array $tags = [];
     /** @var array<int, array<string, mixed>> */
-    protected array $categories = [];
+    private array $categories = [];
 
     public function __construct()
     {
@@ -55,7 +56,7 @@ final class UpdateRecipeCommandBuilder
     public function withDescription(string $description): self
     {
         $this->description = $description;
-        
+
         return $this;
     }
 
@@ -114,5 +115,4 @@ final class UpdateRecipeCommandBuilder
             categories: $this->categories,
         );
     }
-
 }

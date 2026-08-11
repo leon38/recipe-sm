@@ -1,17 +1,16 @@
 <?php
+
 namespace App\Tests;
 
-use App\Domain\Recipe\Repository\IngredientRepositoryInterface;
 use App\Domain\Recipe\Repository\CategoryRepositoryInterface;
+use App\Domain\Recipe\Repository\IngredientRepositoryInterface;
 use App\Domain\Recipe\Repository\RecipeRepositoryInterface;
 use App\Domain\Recipe\Repository\TagRepositoryInterface;
 use PHPUnit\Framework\MockObject\MockObject;
-
 use PHPUnit\Framework\TestCase;
 
 abstract class ApplicationTestCase extends TestCase
 {
-
     protected RecipeRepositoryInterface|MockObject $recipeRepository;
     protected IngredientRepositoryInterface|MockObject $ingredientRepository;
     protected CategoryRepositoryInterface|MockObject $categoryRepository;
@@ -25,5 +24,4 @@ abstract class ApplicationTestCase extends TestCase
         $this->categoryRepository = $this->createMock(CategoryRepositoryInterface::class);
         $this->tagRepository = $this->createMock(TagRepositoryInterface::class);
     }
-
 }

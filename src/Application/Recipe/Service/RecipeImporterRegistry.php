@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Application\Recipe\Service;
 
 final class RecipeImporterRegistry
@@ -19,8 +20,6 @@ final class RecipeImporterRegistry
             }
         }
 
-        throw new \RuntimeException(
-            sprintf('No importer found for "%s"', $url)
-        );
+        throw new \RuntimeException(sprintf('No importer found for "%s"', $url));
     }
 }

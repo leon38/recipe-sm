@@ -1,9 +1,10 @@
 <?php
+
 namespace App\Application\Recipe\DTO;
 
-use Symfony\Component\Validator\Constraints as Assert;
 use App\Domain\Recipe\Enum\Difficulty;
 use App\Domain\Recipe\Enum\Season;
+use Symfony\Component\Validator\Constraints as Assert;
 
 final readonly class UpdatedRecipeDTO
 {
@@ -23,21 +24,20 @@ final readonly class UpdatedRecipeDTO
         public ?int $servings = null,
         #[Assert\Choice(callback: [Season::class, 'cases'])]
         public ?string $season = null,
-        
+
         /** @var UpdatedIngredientDTO[] */
         #[Assert\Length(min: 1)]
         public array $ingredients = [],
-        
+
         /** @var UpdatedStepDTO[] */
         #[Assert\Length(min: 1)]
         public array $steps = [],
-        
+
         /** @var UpdatedTagDTO[] */
         public array $tags = [],
-        
+
         /** @var UpdatedCategoryDTO[] */
         public array $categories = [],
-        
     ) {
     }
 }

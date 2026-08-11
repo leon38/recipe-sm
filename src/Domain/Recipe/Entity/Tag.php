@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Domain\Recipe\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -17,7 +18,7 @@ class Tag implements \JsonSerializable
     #[ORM\Column(type: 'string', length: 100)]
     private string $name;
 
-    /** @var Collection<int, Recipe> $recipes*/
+    /** @var Collection<int, Recipe> $recipes */
     #[ORM\ManyToMany(targetEntity: Recipe::class, mappedBy: 'tags')]
     private Collection $recipes;
 

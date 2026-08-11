@@ -6,7 +6,6 @@ use App\Application\Recipe\DTO\ImportedRecipeDTO;
 
 final class RegexRecipeParser implements RecipeParserInterface
 {
-
     public function __construct(
         private IngredientExtractor $ingredientExtractor,
         private StepExtractor $stepExtractor,
@@ -19,7 +18,6 @@ final class RegexRecipeParser implements RecipeParserInterface
         string $sourceUrl,
         ?string $imageUrl = null,
     ): ImportedRecipeDTO {
-
         $content = $this->removeEmojis($content);
 
         $title = $this->extractTitle($content);
@@ -42,10 +40,9 @@ final class RegexRecipeParser implements RecipeParserInterface
         $lines = preg_split('/\R/u', $content);
 
         foreach ($lines as $line) {
-
             $line = trim($line);
 
-            if ($line === '') {
+            if ('' === $line) {
                 continue;
             }
 
