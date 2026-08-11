@@ -4,7 +4,7 @@ namespace App\Tests\Unit\Application\Recipe\DTO;
 
 use App\Application\Recipe\DTO\ImportedStepDTO;
 
-final class ImportedStepDTOTest extends AbstractValidationTest
+final class ImportedStepDTOTest extends AbstractValidationTestCase
 {
     public function testValidStep(): void
     {

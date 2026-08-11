@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Application\Recipe\CommandHandler;
+namespace App\Tests\Unit\Application\Recipe\CommandHandler;
 
 use App\Application\Recipe\CommandHandler\SaveRecipeHandler;
 use App\Application\Recipe\Factory\RecipeFactory;

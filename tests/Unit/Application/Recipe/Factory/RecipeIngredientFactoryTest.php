@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Application\Recipe\Factory;
+namespace App\Tests\Unit\Application\Recipe\Factory;
 
 use App\Application\Recipe\Factory\RecipeIngredientFactory;
 use App\Application\Recipe\Resolver\IngredientResolver;

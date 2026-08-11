@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Application\Recipe\Factory;
+namespace App\Tests\Unit\Application\Recipe\Factory;
 
 use App\Application\Image\ImageStorageInterface;
 use App\Application\Recipe\Factory\RecipeFactory;
@@ -52,6 +52,12 @@ final class RecipeFactoryTest extends ApplicationTestCase
             ->withTitle('Brownie')
             ->withDescription('Le meilleur brownie')
             ->build();
+        
+        $this->imageStorage
+            ->expects($this->once())
+            ->method('store')
+            ->with($command->imageUrl, $this->anything())
+            ->willReturn($command->imageUrl);
 
         $recipe = $this->factory->create($command);
 

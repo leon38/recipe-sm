@@ -21,6 +21,7 @@ readonly class RecipeFactory
 
     public function create(SaveRecipeCommand $command): Recipe
     {
+
         $recipe = Recipe::create(
             title: $command->title,
             description: $command->description,

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Util;
+namespace App\Tests\Utils;
 
 use App\Domain\Recipe\Entity\Category;
 use App\Domain\Recipe\Entity\Ingredient;

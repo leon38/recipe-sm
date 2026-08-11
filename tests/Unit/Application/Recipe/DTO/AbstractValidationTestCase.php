@@ -5,7 +5,7 @@ namespace App\Tests\Unit\Application\Recipe\DTO;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-abstract class AbstractValidationTest extends KernelTestCase
+abstract class AbstractValidationTestCase extends KernelTestCase
 {
     protected ValidatorInterface $validator;
 
