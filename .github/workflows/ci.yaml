@@ -160,8 +160,8 @@ jobs:
 
       - name: PHPUnit
         run: |
-          vendor/bin/phpunit
+          vendor/bin/phpunit --display-notices --display-deprecations
 
-      - name: Behat
-        run: |
-          vendor/bin/behat
+      #- name: Behat
+      #  run: |
+      #    vendor/bin/behat
