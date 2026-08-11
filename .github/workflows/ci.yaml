@@ -90,7 +90,7 @@ jobs:
 
     env:
       APP_ENV: test
-      DATABASE_URL: mysql://recipe:recipe@127.0.0.1:3306/recipe_test?serverVersion=8.4
+      DATABASE_URL: mysql://recipe:recipe@127.0.0.1:3306/recipe?serverVersion=8.4
       PHP_VERSION: 8.4
 
     steps:
@@ -135,7 +135,7 @@ jobs:
           cat > .env <<'EOF'
           APP_ENV=test
           APP_SECRET=ci-secret
-          DATABASE_URL=mysql://recipe:recipe@127.0.0.1:3306/recipe_test?serverVersion=8.4
+          DATABASE_URL=mysql://recipe:recipe@127.0.0.1:3306/recipe?serverVersion=8.4
           DEFAULT_URI=http://localhost
           CORS_ALLOW_ORIGIN='^https?://(localhost|127\.0\.0\.1)(:[0-9]+)?$'
           EOF
@@ -143,26 +143,14 @@ jobs:
       - name: Install dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
+      - name: Grant privileges to test user
+        run: |
+          mysql -h127.0.0.1 -uroot -proot -e "GRANT ALL PRIVILEGES ON \`recipe_test%\`.* TO 'recipe'@'%'; FLUSH PRIVILEGES;"
 
       - name: Prepare database
         run: |
           php bin/console doctrine:database:create --if-not-exists
           php bin/console doctrine:migrations:migrate --no-interaction
-
-
-      - name: Load fixtures
-        run: |
-          php bin/console doctrine:fixtures:load \
-            --no-interaction
-
-      - name: Prepare database
-        run: |
-
-          php bin/console doctrine:database:create \
-            --if-not-exists
-
-          php bin/console doctrine:migrations:migrate \
-            --no-interaction
 
 
       - name: Load fixtures
