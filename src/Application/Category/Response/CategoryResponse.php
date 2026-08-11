@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Application\Category\Response;
+
+final class CategoryResponse implements \JsonSerializable
+{
+    public function __construct(
+        public string $id,
+        public string $name,
+    ) {
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public function jsonSerialize(): array
+    {
+        return get_object_vars($this);
+    }
+}
