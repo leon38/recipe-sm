@@ -37,6 +37,7 @@ class Recipe implements \JsonSerializable
         private ?string $sourceUrl,
         #[ORM\Column(type: 'text')]
         private string $imageUrl,
+        /** @var Collection<int, RecipeIngredient> */
         #[ORM\OneToMany(
             mappedBy: 'recipe',
             targetEntity: RecipeIngredient::class,
@@ -44,11 +45,14 @@ class Recipe implements \JsonSerializable
             orphanRemoval: true
         )]
         private Collection $ingredients = new ArrayCollection(),
+        /** @var Collection<int, Step> */
         #[ORM\OneToMany(targetEntity: Step::class, mappedBy: 'recipe', cascade: ['persist', 'remove'], orphanRemoval: true)]
         private Collection $steps = new ArrayCollection(),
+        /** @var Collection<int, Tag> */
         #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'recipes', cascade: ['persist'], orphanRemoval: true)]
         #[ORM\JoinTable(name: 'recipe_tag')]
         private Collection $tags = new ArrayCollection(),
+        /** @var Collection<int, Category> */
         #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'recipes', cascade: ['persist'], orphanRemoval: true)]
         #[ORM\JoinTable(name: 'recipe_category')]
         private Collection $categories = new ArrayCollection(),
@@ -214,6 +218,9 @@ class Recipe implements \JsonSerializable
         return $this;
     }
 
+    /**
+     * @return Collection<int, RecipeIngredient>
+     */
     public function getIngredients(): Collection
     {
         return $this->ingredients;
@@ -277,6 +284,9 @@ class Recipe implements \JsonSerializable
         }
     }
 
+    /**
+     * @param RecipeIngredient[] $ingredients
+     */
     public function setIngredients(array $ingredients): self
     {
         $this->ingredients = new ArrayCollection($ingredients);
@@ -291,6 +301,9 @@ class Recipe implements \JsonSerializable
         return $this;
     }
 
+    /**
+     * @return Collection<int, Step>
+     */
     public function getSteps(): Collection
     {
         return $this->steps;
@@ -306,6 +319,9 @@ class Recipe implements \JsonSerializable
         return $this;
     }
 
+    /**
+     * @param Step[] $steps
+     */
     public function replaceSteps(iterable $steps): self
     {
         foreach ($this->steps as $step) {
@@ -319,6 +335,9 @@ class Recipe implements \JsonSerializable
         return $this;
     }
 
+    /**
+     * @param Step[] $steps
+     */
     public function setSteps(array $steps): self
     {
         $this->steps = new ArrayCollection($steps);
@@ -333,6 +352,9 @@ class Recipe implements \JsonSerializable
         return $this;
     }
 
+    /**
+     * @return Collection<int, Tag>
+     */
     public function getTags(): Collection
     {
         return $this->tags;
@@ -375,6 +397,9 @@ class Recipe implements \JsonSerializable
         return $this;
     }
 
+    /**
+     * @return Collection<int, Category>
+     */
     public function getCategories(): Collection
     {
         return $this->categories;
@@ -404,6 +429,10 @@ class Recipe implements \JsonSerializable
         return $this;
     }
 
+    /**
+     * @param Category[] $categories
+     * @return self
+     */
     public function replaceCategories(iterable $categories): self
     {
         foreach ($this->categories as $category) {
@@ -428,6 +457,9 @@ class Recipe implements \JsonSerializable
         return null;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function jsonSerialize(): array
     {
 

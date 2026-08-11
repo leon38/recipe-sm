@@ -65,9 +65,6 @@ final class RecipeFactoryTest extends ApplicationTestCase
         self::assertSame($command->servings, $recipe->getServings());
         self::assertSame($command->imageUrl, $recipe->getImageUrl());
 
-        self::assertNotNull($recipe->getId());
-        self::assertNotNull($recipe->getCreatedAt());
-        self::assertNotNull($recipe->getUpdatedAt());
         $this->assertGeneratedId($recipe);
         $this->assertInitializedTimestamps($recipe);
     }

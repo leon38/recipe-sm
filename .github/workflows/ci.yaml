@@ -136,6 +136,8 @@ jobs:
           APP_ENV=test
           APP_SECRET=ci-secret
           DATABASE_URL=mysql://recipe:recipe@127.0.0.1:3306/recipe_test?serverVersion=8.4
+          DEFAULT_URI=http://localhost
+          CORS_ALLOW_ORIGIN='^https?://(localhost|127\.0\.0\.1)(:[0-9]+)?$'
           EOF
 
       - name: Install dependencies

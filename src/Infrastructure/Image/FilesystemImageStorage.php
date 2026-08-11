@@ -17,10 +17,8 @@ final class FilesystemImageStorage implements ImageStorageInterface
         private readonly Filesystem $filesystem,
         #[Autowire('%kernel.project_dir%/public/uploads/recipes')]
         private string $uploadDirectory,
-
         #[Autowire('/uploads/recipes')]
         private string $publicPrefix = '/uploads/recipes',
-
         private int $quality = 85,
     ) {
     }

@@ -18,10 +18,10 @@ final readonly class UpdatedRecipeDTO
         public string $imageUrl,
         public ?int $prepTime = null,
         public ?int $cookTime = null,
-        #[Assert\Choice(callable: [Difficulty::class, 'cases'])]
+        #[Assert\Choice(callback: [Difficulty::class, 'cases'])]
         public ?string $difficulty = null,
         public ?int $servings = null,
-        #[Assert\Choice(callable: [Season::class, 'cases'])]
+        #[Assert\Choice(callback: [Season::class, 'cases'])]
         public ?string $season = null,
         
         /** @var UpdatedIngredientDTO[] */

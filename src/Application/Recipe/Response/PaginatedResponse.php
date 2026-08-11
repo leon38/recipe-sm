@@ -19,6 +19,9 @@ final readonly class PaginatedResponse implements \JsonSerializable
         return (int) ceil($this->total / $this->perPage);
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function jsonSerialize(): array
     {
         return [

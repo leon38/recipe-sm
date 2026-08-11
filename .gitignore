@@ -1,4 +1,3 @@
-
 ###> symfony/framework-bundle ###
 /.env
 /.env.local
@@ -18,11 +17,6 @@
 ###> phpstan/phpstan ###
 phpstan.neon
 ###< phpstan/phpstan ###
-
-###> qossmic/deptrac ###
-/.deptrac.cache
-###< qossmic/deptrac ###
-
 ###> phpunit/phpunit ###
 /phpunit.xml
 /.phpunit.cache/
@@ -32,3 +26,7 @@ phpstan.neon
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+
+###> deptrac/deptrac ###
+/.deptrac.cache
+###< deptrac/deptrac ###

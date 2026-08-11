@@ -61,9 +61,6 @@ final class ClaudeRecipeParser implements RecipeParserInterface
             model: 'claude-opus-4-8',
         );
 
-        dd($message);
-
-
         return new ImportedRecipeDTO(
             title: 'Dummy Recipe Title',
             description: 'Dummy Recipe Description',

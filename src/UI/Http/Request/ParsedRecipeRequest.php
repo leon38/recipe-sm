@@ -18,14 +18,14 @@ final readonly class ParsedRecipeRequest
         public string $sourceUrl,
         public ?int $servings,
         public ?string $season,
-        /** @var ImportedIngredientDTO[] */
+        /** @var array<int,array<string,mixed>> */
         public array $ingredients,
 
-        /** @var ImportedStepDTO[] */
+        /** @var array<int,array<string,mixed>> */
         public array $steps,
-        /** @var ImportedTagDTO[] */
+        /** @var array<int,array<string,mixed>> */
         public array $tags = [],
-        /** @var ImportedCategoryDTO[] */
+        /** @var array<int,array<string,mixed>> */
         public array $categories = [],
     ) {
     }

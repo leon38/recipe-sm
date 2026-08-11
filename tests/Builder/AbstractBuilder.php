@@ -28,6 +28,11 @@ abstract class AbstractBuilder
         return (new \DateTimeImmutable($date));
     }
 
+    /**
+     * @param array<mixed> $collection
+     * @param mixed $value
+     * @return array<mixed>
+     */
     protected function append(array $collection, mixed $value): array
     {
         $collection[] = $value;

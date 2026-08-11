@@ -6,7 +6,6 @@ use App\Application\Recipe\Command\ImportRecipeFromUrlCommand;
 use App\Domain\Recipe\Entity\RecipeIngredient;
 use App\Domain\Recipe\Entity\Recipe;
 use App\Domain\Recipe\Entity\Step;
-use App\Domain\Recipe\Repository\RecipeRepositoryInterface;
 use App\Application\Recipe\Service\RecipeImporterRegistry;
 
 final class ImportRecipeFromUrlHandler
@@ -20,10 +19,6 @@ final class ImportRecipeFromUrlHandler
         ImportRecipeFromUrlCommand $command,
     ): Recipe {
         $importer = $this->importerRegistry->getImporter($command->url);
-
-        if (!$importer) {
-            throw new \RuntimeException('Unsupported source');
-        }
 
         $dto = $importer->import($command->url);
 

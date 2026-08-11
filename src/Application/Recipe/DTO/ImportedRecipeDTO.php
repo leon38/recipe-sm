@@ -14,10 +14,10 @@ final readonly class ImportedRecipeDTO
         public string $imageUrl,
         public ?int $prepTime = null,
         public ?int $cookTime = null,
-        #[Assert\Choice(callable: [\App\Domain\Recipe\Enum\Difficulty::class, 'cases'])]
+        #[Assert\Choice(callback: [\App\Domain\Recipe\Enum\Difficulty::class, 'cases'])]
         public ?string $difficulty = null,
         public ?int $servings = null,
-        #[Assert\Choice(callable: [\App\Domain\Recipe\Enum\Season::class, 'cases'])]
+        #[Assert\Choice(callback: [\App\Domain\Recipe\Enum\Season::class, 'cases'])]
         public ?string $season = null,
         
         /** @var ImportedIngredientDTO[] */

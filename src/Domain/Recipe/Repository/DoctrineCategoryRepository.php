@@ -11,7 +11,7 @@ final class DoctrineCategoryRepository implements CategoryRepositoryInterface
     }
 
     /**
-     * @param array $criteria
+     * @param array<string, mixed> $criteria
      * @return Category[]
      */
     public function findBy(array $criteria): array

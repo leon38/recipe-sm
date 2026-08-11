@@ -134,8 +134,11 @@ class RecipeIngredient implements \JsonSerializable
             $this->quantity,
             strtolower($this->unit ?? '')
         ));
-}
+    }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function jsonSerialize(): array
     {
         return [

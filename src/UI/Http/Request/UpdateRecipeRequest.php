@@ -20,14 +20,14 @@ final readonly class UpdateRecipeRequest
         public string $sourceUrl,
         public ?int $servings,
         public ?string $season,
-        /** @var UpdatedIngredientDTO[] */
+        /** @var array<array<string, mixed>> */
         public array $ingredients,
 
-        /** @var UpdatedStepDTO[] */
+        /** @var array<array<string, mixed>> */
         public array $steps,
-        /** @var UpdatedTagDTO[] */
+        /** @var array<array<string, mixed>> */
         public array $tags = [],
-        /** @var UpdatedCategoryDTO[] */
+        /** @var array<array<string, mixed>> */
         public array $categories = [],
     ) {
     }

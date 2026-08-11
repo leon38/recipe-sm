@@ -15,13 +15,13 @@ final class UpdateRecipeCommand
         public ?string $season,
         public string $imageUrl,
         public string $sourceUrl,
-        /** @var UpdatedIngredientDTO[] */
+        /** @var array<int,array<string,mixed>> */
         public array $ingredients,
-        /** @var UpdatedStepDTO[] */
+        /** @var array<int,array<string,mixed>> */
         public array $steps,
-        /** @var UpdatedTagDTO[] */
+        /** @var array<int,array<string,mixed>> */
         public array $tags = [],
-        /** @var UpdatedCategoryDTO[] */
+        /** @var array<int,array<string,mixed>> */
         public array $categories = [],
     ) {
 

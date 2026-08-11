@@ -40,14 +40,5 @@ final class InstagramRecipeImporter implements RecipeImporterInterface
             sourceUrl: $url,
             imageUrl: $og->image,
         );
-        
-        return new ImportedRecipeDTO(
-            title: $title,
-            description: nl2br($og->description ?? ''),
-            sourceUrl: $url,
-            imageUrl: $og->image,
-            ingredients: [],
-            steps: [],
-        );
     }
 }

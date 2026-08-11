@@ -8,6 +8,9 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 
+/**
+ * @extends ServiceEntityRepository<Recipe>
+ */
 final class DoctrineRecipeReadRepository extends ServiceEntityRepository implements RecipeReadRepositoryInterface
 {
     public function __construct(
@@ -25,8 +28,6 @@ final class DoctrineRecipeReadRepository extends ServiceEntityRepository impleme
             ->select('COUNT(r.id)')
             ->getQuery()
             ->getSingleScalarResult();
-
-            dump($query->offset());
 
         $recipes = $qb
             ->setFirstResult($query->offset())

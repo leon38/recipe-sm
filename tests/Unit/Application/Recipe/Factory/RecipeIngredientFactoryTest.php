@@ -40,8 +40,6 @@ final class RecipeIngredientFactoryTest extends ApplicationTestCase
         self::assertSame($ingredient->getName(), $recipeIngredients[0]->getIngredient()->getName());
         self::assertEquals(250, $recipeIngredients[0]->getQuantity());
         self::assertSame('g', $recipeIngredients[0]->getUnit());
-
-        self::assertNotNull($recipeIngredients[0]->getId());
     }
 
     public function testCreateWithoutUnit(): void

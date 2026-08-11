@@ -43,6 +43,11 @@ final class StepExtractor extends ContentExtractor
         return $steps;
     }
 
+    /**
+     * Finds the starting index of the preparation steps section.
+     * @param array<string> $lines The lines of the content.
+     * @return int The index of the first preparation step line.
+     */
     private function findPreparationStart(array $lines): int
     {
         foreach ($lines as $index => $line) {

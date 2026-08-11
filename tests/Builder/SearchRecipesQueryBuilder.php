@@ -16,13 +16,15 @@ final class SearchRecipesQueryBuilder
 
     private ?string $search = null;
 
+    /** @var array<string> */
     private array $ingredientIds = [];
 
+    /** @var array<string> */
     private array $categoryIds = [];
 
-    private ?string $difficulty = null;
+    private ?Difficulty $difficulty = null;
 
-    private ?string $season = null;
+    private ?Season $season = null;
 
     private ?int $maxPrepTime = null;
 
@@ -68,14 +70,14 @@ final class SearchRecipesQueryBuilder
 
     public function withDifficulty(Difficulty $difficulty): self
     {
-        $this->difficulty = $difficulty->value;
+        $this->difficulty = $difficulty;
 
         return $this;
     }
 
     public function withSeason(Season $season): self
     {
-        $this->season = $season->value;
+        $this->season = $season;
 
         return $this;
     }

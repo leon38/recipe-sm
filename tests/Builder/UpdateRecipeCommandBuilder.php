@@ -19,9 +19,13 @@ final class UpdateRecipeCommandBuilder
     protected ?string $sourceUrl = 'https://instagram.com/p/123';
     protected string $imageUrl = 'https://picsum.photos/600/400';
 
+    /** @var array<array<string, mixed>> */
     protected array $ingredients = [];
+    /** @var array<array<string, mixed>> */
     protected array $steps = [];
+    /** @var array<array<string, mixed>> */
     protected array $tags = [];
+    /** @var array<int, array<string, mixed>> */
     protected array $categories = [];
 
     public function __construct()

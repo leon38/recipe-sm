@@ -1,8 +1,6 @@
 <?php
 namespace App\Infrastructure\Import\Parser;
 
-use Wamania\Snowball\Stemmer\French;
-
 final class IngredientNameNormalizer
 {
     private const STOP_WORDS = [
@@ -26,8 +24,6 @@ final class IngredientNameNormalizer
 
         $name = mb_strtolower($name);
 
-        //$name = $this->removeAccents($name);
-
         $name = preg_replace('/[()]/', ' ', $name);
 
         $name = preg_replace('/\s+/', ' ', $name);
@@ -36,7 +32,6 @@ final class IngredientNameNormalizer
 
         $normalized = [];
 
-        $stemmer = new French();
 
         foreach ($words as $word) {
 
@@ -48,18 +43,9 @@ final class IngredientNameNormalizer
                 continue;
             }
 
-            $normalized[] = $word; //$stemmer->stem($word);
+            $normalized[] = $word;
         }
 
         return implode(' ', $normalized);
-    }
-
-    private function removeAccents(string $text): string
-    {
-        return iconv(
-            'UTF-8',
-            'ASCII//TRANSLIT//IGNORE',
-            $text,
-        );
     }
 }

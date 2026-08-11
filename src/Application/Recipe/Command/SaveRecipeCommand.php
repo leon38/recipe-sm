@@ -13,13 +13,13 @@ final class SaveRecipeCommand
         public ?string $season,
         public string $imageUrl,
         public string $sourceUrl,
-        /** @var ImportedIngredientDTO[] */
+        /** @var array<int,array<string,mixed>> */
         public array $ingredients,
-        /** @var ImportedStepDTO[] */
+        /** @var array<int,array<string,mixed>> */
         public array $steps,
-        /** @var ImportedTagDTO[] */
+        /** @var array<int,array<string,mixed>> */
         public array $tags = [],
-        /** @var ImportedCategoryDTO[] */
+        /** @var array<int,array<string,mixed>> */
         public array $categories = [],
     ) {
 

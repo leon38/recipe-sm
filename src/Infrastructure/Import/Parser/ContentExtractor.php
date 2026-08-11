@@ -4,6 +4,12 @@ namespace App\Infrastructure\Import\Parser;
 class ContentExtractor
 {
 
+    /**
+     * Checks if a line contains any of the specified headers.
+     * @param string $line The line to check.
+     * @param array<string> $headers The headers to look for.
+     * @return bool True if the line contains any of the headers, false otherwise.
+     */
     public function containsHeader(string $line, array $headers): bool
     {
         $normalized = $this->normalize($line);

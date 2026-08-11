@@ -106,7 +106,7 @@ final class IngredientExtractor extends ContentExtractor
 
         $quantity = $this->quantityNormalizer->normalize($matches[1][0]);
         
-        $name = isset($matches[3][0]) ? $this->ingredientNameNormalizer->normalize($matches[3][0]) : $line;
+        $name = $this->ingredientNameNormalizer->normalize($matches[3][0]);
 
         return new ImportedIngredientDTO(
             name: $name,
@@ -115,6 +115,11 @@ final class IngredientExtractor extends ContentExtractor
         );
     }
 
+    /**
+     * Finds the starting index of the ingredients section.
+     * @param array<string> $lines The lines of the content.
+     * @return int The index of the first ingredient line.
+     */
     private function findIngredientsStart(array $lines): int
     {
         foreach ($lines as $index => $line) {

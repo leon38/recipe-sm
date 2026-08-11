@@ -4,6 +4,9 @@ namespace App\Domain\Recipe\Repository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use App\Domain\Recipe\Entity\Tag;
 
+/**
+ * @extends ServiceEntityRepository<Tag>
+ */
 final class DoctrineTagRepository extends ServiceEntityRepository implements TagRepositoryInterface
 {
     public function __construct(
@@ -18,7 +21,7 @@ final class DoctrineTagRepository extends ServiceEntityRepository implements Tag
      * @param int|null $offset
      * @return array<\App\Domain\Recipe\Entity\Tag>
      */
-    public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null): array
+    public function findBy(array $criteria, ?array $orderBy = null, ?int $limit = null, ?int $offset = null): array
     {
         return $this->doctrine->getRepository(Tag::class)->findBy($criteria, $orderBy, $limit, $offset);
     }

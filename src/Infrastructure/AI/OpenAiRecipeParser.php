@@ -63,8 +63,6 @@ PROMPT
                 'type' => 'json_object',
             ],
         ]);
-
-        dd($response->toArray());
         
         $json = json_decode(
             $response->choices[0]->message->content,
@@ -100,7 +98,7 @@ PROMPT
             ),
             description: $content,
             sourceUrl: $sourceUrl,
-            imageUrl: $imageUrl ?? '',
+            imageUrl: $imageUrl,
             ingredients: $ingredients,
             steps: $steps,
         );

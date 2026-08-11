@@ -16,6 +16,9 @@ final class Category implements \JsonSerializable
     #[ORM\Column(type: 'string', length: 255)]
     private string $name;
 
+    /**
+     * @var Collection<int, Recipe>
+     */
     #[ORM\ManyToMany(targetEntity: Recipe::class, mappedBy: 'categories')]
     private Collection $recipes;
 
@@ -60,6 +63,9 @@ final class Category implements \JsonSerializable
         return $this;
     }
 
+    /**
+     * @return Collection<int, Recipe>
+     */
     public function getRecipes(): Collection
     {
         return $this->recipes;
@@ -85,6 +91,9 @@ final class Category implements \JsonSerializable
         return $this;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function jsonSerialize(): array
     {
         return [

@@ -17,6 +17,7 @@ class Tag implements \JsonSerializable
     #[ORM\Column(type: 'string', length: 100)]
     private string $name;
 
+    /** @var Collection<int, Recipe> $recipes*/
     #[ORM\ManyToMany(targetEntity: Recipe::class, mappedBy: 'tags')]
     private Collection $recipes;
 
@@ -44,6 +45,9 @@ class Tag implements \JsonSerializable
         return $this;
     }
 
+    /**
+     * @return Collection<int, Recipe>
+     */
     public function getRecipes(): Collection
     {
         return $this->recipes;
@@ -69,6 +73,9 @@ class Tag implements \JsonSerializable
         return $this;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function jsonSerialize(): mixed
     {
         return [

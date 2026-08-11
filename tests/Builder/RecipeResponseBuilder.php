@@ -17,13 +17,13 @@ final class RecipeResponseBuilder extends AbstractBuilder
 {
     private string $id;
     private string $title = 'Brownie';
-    private ?string $description = 'Un délicieux brownie';
+    private string $description = 'Un délicieux brownie';
     private int $prepTime = 15;
     private int $cookTime = 30;
     private int $servings = 4;
     private string $difficulty = Difficulty::EASY->value;
     private string $season = Season::ALL_SEASONS->value;
-    private ?string $sourceUrl = 'https://instagram.com/p/test';
+    private string $sourceUrl = 'https://instagram.com/p/test';
     private string $imageUrl = 'https://picsum.photos/600/400';
     private \DateTimeImmutable $createdAt;
     private \DateTimeImmutable $updatedAt;

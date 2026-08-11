@@ -55,7 +55,6 @@ final class GeminiRecipeParser implements RecipeParserInterface
         );
         
         $parsedData = json_decode($result->text(), true);
-        dd($parsedData); // Debugging line to inspect the parsed data
 
         return new ImportedRecipeDTO(
             title: $parsedData['title'] ?? 'Default Title',
