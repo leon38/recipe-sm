@@ -11,13 +11,13 @@ final class UpdateRecipeCommandBuilder
 {
     private string $id;
     private string $title = 'Brownie';
-    private ?string $description = 'Délicieux brownie';
+    private string $description = 'Délicieux brownie';
     public int $prepTime = 15;
     public int $cookTime = 30;
     public int $servings = 4;
     private string $difficulty = Difficulty::EASY->value;
     private string $season = Season::ALL_SEASONS->value;
-    private ?string $sourceUrl = 'https://instagram.com/p/123';
+    private string $sourceUrl = 'https://instagram.com/p/123';
     private string $imageUrl = 'https://picsum.photos/600/400';
 
     /** @var array<array<string, mixed>> */
