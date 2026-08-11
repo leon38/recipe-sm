@@ -20,7 +20,6 @@ final class Version20260619080159 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE ingredient DROP CONSTRAINT FK_6BAF787059D8A214');
         $this->addSql('ALTER TABLE step DROP CONSTRAINT FK_43B9FE3C59D8A214');
         $this->addSql('ALTER TABLE recipe CHANGE id id VARCHAR(64) NOT NULL');
         $this->addSql('ALTER TABLE ingredient CHANGE recipe_id recipe_id VARCHAR(64) DEFAULT NULL');
