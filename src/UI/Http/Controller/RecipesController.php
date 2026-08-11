@@ -4,7 +4,7 @@ namespace App\UI\Http\Controller;
 
 use App\Application\Recipe\Query\SearchRecipesQuery;
 use App\Application\Recipe\Response\PaginatedResponse;
-use App\Infrastructure\QueryBus\QueryBusInterface;
+use App\Application\Shared\Bus\QueryBusInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

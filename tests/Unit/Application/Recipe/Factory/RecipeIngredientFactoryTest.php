@@ -6,7 +6,7 @@ namespace Tests\Application\Recipe\Factory;
 
 use App\Application\Recipe\Factory\RecipeIngredientFactory;
 use App\Application\Recipe\Resolver\IngredientResolver;
-use App\Infrastructure\Import\Parser\IngredientNameNormalizer;
+use App\Domain\Recipe\Service\IngredientNameNormalizer;
 use App\Tests\ApplicationTestCase;
 use App\Tests\Builder\IngredientBuilder;
 

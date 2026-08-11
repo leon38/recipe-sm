@@ -14,4 +14,9 @@ interface CategoryRepositoryInterface
     public function findBy(array $criteria): array;
 
     public function update(Category $category): void;
+
+    /**
+     * @return list<Category>
+     */
+    public function findAll(): array;
 }

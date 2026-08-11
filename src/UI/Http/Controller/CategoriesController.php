@@ -2,9 +2,8 @@
 
 namespace App\UI\Http\Controller;
 
-use App\Application\Recipe\Mapper\CategoryResponseMapper;
-use App\Domain\Recipe\Entity\Category;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Application\Category\Query\GetCategoriesQuery;
+use App\Application\Shared\Bus\QueryBusInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
@@ -12,12 +11,18 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/api/category')]
 final class CategoriesController extends AbstractController
 {
-    #[Route('/', methods: ['GET'])]
-    public function __invoke(EntityManagerInterface $entityManager): JsonResponse
-    {
-        $categories = $entityManager->getRepository(Category::class)->findAll();
+    public function __construct(
+        private readonly QueryBusInterface $queryBus,
+    ) {
+    }
 
-        return $this->json(
-            array_map(static fn (Category $category): array => CategoryResponseMapper::map($category)->jsonSerialize(), $categories), 200);
+    #[Route(methods: ['GET'])]
+    public function __invoke(): JsonResponse
+    {
+        return new JsonResponse(
+            $this->queryBus->ask(
+                new GetCategoriesQuery(),
+            ),
+        );
     }
 }

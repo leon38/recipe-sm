@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Application\Recipe\Response;
 
+use App\Application\Category\Response\CategoryResponse;
+
 final readonly class RecipeResponse implements \JsonSerializable
 {
     /**

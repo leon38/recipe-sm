@@ -3,6 +3,7 @@
 namespace App\Infrastructure\Import\Parser;
 
 use App\Application\Recipe\DTO\ImportedIngredientDTO;
+use App\Domain\Recipe\Service\IngredientNameNormalizer;
 
 final class IngredientExtractor extends ContentExtractor
 {

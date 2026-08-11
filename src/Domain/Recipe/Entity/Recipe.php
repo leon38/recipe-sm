@@ -3,13 +3,12 @@
 namespace App\Domain\Recipe\Entity;
 
 use App\Domain\Common\Timestampable;
-use App\Domain\Recipe\Repository\DoctrineRecipeRepository;
 use App\Domain\Recipe\ValueObject\ValueId;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: DoctrineRecipeRepository::class)]
+#[ORM\Entity]
 class Recipe implements \JsonSerializable
 {
     use Timestampable;

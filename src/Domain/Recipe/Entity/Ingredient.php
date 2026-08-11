@@ -2,11 +2,10 @@
 
 namespace App\Domain\Recipe\Entity;
 
-use App\Domain\Recipe\Repository\DoctrineIngredientRepository;
 use App\Domain\Recipe\ValueObject\ValueId;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: DoctrineIngredientRepository::class)]
+#[ORM\Entity]
 final class Ingredient
 {
     public function __construct(

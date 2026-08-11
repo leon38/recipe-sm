@@ -11,7 +11,7 @@ use App\Application\Recipe\Factory\StepFactory;
 use App\Application\Recipe\Resolver\CategoryResolver;
 use App\Application\Recipe\Resolver\IngredientResolver;
 use App\Application\Recipe\Resolver\TagResolver;
-use App\Infrastructure\Import\Parser\IngredientNameNormalizer;
+use App\Domain\Recipe\Service\IngredientNameNormalizer;
 use App\Tests\ApplicationTestCase;
 use App\Tests\Builder\CategoryBuilder;
 use App\Tests\Builder\SaveRecipeCommandBuilder;

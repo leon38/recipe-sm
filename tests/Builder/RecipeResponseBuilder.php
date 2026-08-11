@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Builder;
 
-use App\Application\Recipe\Response\CategoryResponse;
+use App\Application\Category\Response\CategoryResponse;
 use App\Application\Recipe\Response\IngredientResponse;
 use App\Application\Recipe\Response\RecipeResponse;
 use App\Application\Recipe\Response\StepResponse;

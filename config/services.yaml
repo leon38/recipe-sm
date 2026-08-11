@@ -46,10 +46,10 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
     App\Domain\Recipe\Repository\RecipeRepositoryInterface:
-        alias: App\Domain\Recipe\Repository\DoctrineRecipeRepository 
+        alias: App\Infrastructure\Doctrine\Recipe\DoctrineRecipeRepository 
 
     App\Domain\Recipe\Repository\CategoryRepositoryInterface:
-        alias: App\Domain\Recipe\Repository\DoctrineCategoryRepository      
+        alias: App\Infrastructure\Doctrine\Recipe\DoctrineCategoryRepository      
 
 
     #################################################################
