@@ -9,12 +9,16 @@
          failOnWarning="true"
          bootstrap="tests/bootstrap.php"
          cacheDirectory=".phpunit.cache"
+         displayDetailsOnTestsThatTriggerNotices="true"
+         displayDetailsOnTestsThatTriggerWarnings="true"
+         displayDetailsOnTestsThatTriggerDeprecations="true"
+         displayDetailsOnTestsThatTriggerErrors="true"
 >
     <php>
         <ini name="display_errors" value="1" />
         <ini name="error_reporting" value="-1" />
         <server name="APP_ENV" value="test" force="true" />
-        <server name="SHELL_VERBOSITY" value="-1" />
+        <server name="SHELL_VERBOSITY" value="0" />
         <env name="APP_ENV" value="test"/>
         <env name="DATABASE_URL" value="mysql://recipe:recipe@127.0.0.1:3306/recipe_test"/>
     </php>
@@ -25,10 +29,10 @@
         </testsuite>
     </testsuites>
 
-    <source ignoreSuppressionOfDeprecations="true"
-            ignoreIndirectDeprecations="true"
-            restrictNotices="true"
-            restrictWarnings="true"
+    <source ignoreSuppressionOfDeprecations="false"
+            ignoreIndirectDeprecations="false"
+            restrictNotices="false"
+            restrictWarnings="false"
     >
         <include>
             <directory>src</directory>

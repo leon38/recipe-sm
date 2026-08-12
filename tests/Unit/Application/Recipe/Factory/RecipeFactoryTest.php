@@ -11,6 +11,7 @@ use App\Application\Recipe\Factory\StepFactory;
 use App\Application\Recipe\Resolver\CategoryResolver;
 use App\Application\Recipe\Resolver\IngredientResolver;
 use App\Application\Recipe\Resolver\TagResolver;
+use App\Domain\Recipe\Repository\RecipeRepositoryInterface;
 use App\Domain\Recipe\Service\IngredientNameNormalizer;
 use App\Tests\ApplicationTestCase;
 use App\Tests\Builder\CategoryBuilder;
@@ -58,6 +59,10 @@ final class RecipeFactoryTest extends ApplicationTestCase
             ->method('store')
             ->with($command->imageUrl, $this->anything())
             ->willReturn($command->imageUrl);
+        
+        $this->recipeRepository
+            ->expects($this->never())
+            ->method('save');
 
         $recipe = $this->factory->create($command);
 
@@ -80,6 +85,16 @@ final class RecipeFactoryTest extends ApplicationTestCase
             ->withDescription(null)
             ->build();
 
+        $this->imageStorage
+            ->expects($this->once())
+            ->method('store')
+            ->with($command->imageUrl, $this->anything())
+            ->willReturn($command->imageUrl);
+            
+        $this->recipeRepository
+            ->expects($this->never())
+            ->method('save');
+
         $recipe = $this->factory->create($command);
 
         self::assertNull($recipe->getDescription());
@@ -89,6 +104,11 @@ final class RecipeFactoryTest extends ApplicationTestCase
 
     public function testCategoriesCanBeAddedAfterCreation(): void
     {
+
+        $this->recipeRepository
+            ->expects($this->never())
+            ->method('save');
+
         $recipe = $this->factory->create(
             SaveRecipeCommandBuilder::create()->build()
         );
@@ -98,6 +118,12 @@ final class RecipeFactoryTest extends ApplicationTestCase
                 ->withName('Dessert')
                 ->build()
         );
+
+        $this->imageStorage
+            ->expects($this->never())
+            ->method('store');
+
+        
 
         self::assertCount(1, $recipe->getCategories());
         $this->assertGeneratedId($recipe);

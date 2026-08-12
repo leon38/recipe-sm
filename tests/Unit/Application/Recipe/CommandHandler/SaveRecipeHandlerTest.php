@@ -55,6 +55,7 @@ final class SaveRecipeHandlerTest extends ApplicationTestCase
         $command = SaveRecipeCommandBuilder::create()->build();
 
         $this->factory
+            ->expects($this->once())
             ->method('create')
             ->willThrowException(new \InvalidArgumentException('Nom de recette invalide'));
 

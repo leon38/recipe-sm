@@ -20,8 +20,8 @@ abstract class ApplicationTestCase extends TestCase
     {
         parent::setUp();
         $this->recipeRepository = $this->createMock(RecipeRepositoryInterface::class);
-        $this->ingredientRepository = $this->createMock(IngredientRepositoryInterface::class);
-        $this->categoryRepository = $this->createMock(CategoryRepositoryInterface::class);
-        $this->tagRepository = $this->createMock(TagRepositoryInterface::class);
+        $this->ingredientRepository = $this->createStub(IngredientRepositoryInterface::class);
+        $this->categoryRepository = $this->createStub(CategoryRepositoryInterface::class);
+        $this->tagRepository = $this->createStub(TagRepositoryInterface::class);
     }
 }

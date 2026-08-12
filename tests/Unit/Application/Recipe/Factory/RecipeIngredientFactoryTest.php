@@ -6,17 +6,20 @@ namespace App\Tests\Unit\Application\Recipe\Factory;
 
 use App\Application\Recipe\Factory\RecipeIngredientFactory;
 use App\Application\Recipe\Resolver\IngredientResolver;
+use App\Domain\Recipe\Repository\IngredientRepositoryInterface;
 use App\Domain\Recipe\Service\IngredientNameNormalizer;
-use App\Tests\ApplicationTestCase;
 use App\Tests\Builder\IngredientBuilder;
+use PHPUnit\Framework\TestCase;
 
-final class RecipeIngredientFactoryTest extends ApplicationTestCase
+final class RecipeIngredientFactoryTest extends TestCase
 {
     private RecipeIngredientFactory $factory;
+    private IngredientRepositoryInterface $ingredientRepository;
 
     protected function setUp(): void
     {
         parent::setUp();
+        $this->ingredientRepository = $this->createStub(IngredientRepositoryInterface::class);
         $ingredientResolver = new IngredientResolver($this->ingredientRepository, new IngredientNameNormalizer());
         $this->factory = new RecipeIngredientFactory($ingredientResolver);
     }
