@@ -11,12 +11,12 @@ use App\Application\Recipe\Factory\StepFactory;
 use App\Application\Recipe\Resolver\CategoryResolver;
 use App\Application\Recipe\Resolver\IngredientResolver;
 use App\Application\Recipe\Resolver\TagResolver;
-use App\Domain\Recipe\Repository\RecipeRepositoryInterface;
 use App\Domain\Recipe\Service\IngredientNameNormalizer;
 use App\Tests\ApplicationTestCase;
 use App\Tests\Builder\CategoryBuilder;
 use App\Tests\Builder\SaveRecipeCommandBuilder;
 use App\Tests\Utils\FactoryAssertions;
+use PHPUnit\Framework\MockObject\MockObject;
 
 final class RecipeFactoryTest extends ApplicationTestCase
 {
@@ -27,7 +27,7 @@ final class RecipeFactoryTest extends ApplicationTestCase
     private CategoryResolver $categoryResolver;
     private TagResolver $tagResolver;
     private RecipeFactory $factory;
-    private ImageStorageInterface $imageStorage;
+    private ImageStorageInterface|MockObject $imageStorage;
 
     protected function setUp(): void
     {
@@ -53,13 +53,13 @@ final class RecipeFactoryTest extends ApplicationTestCase
             ->withTitle('Brownie')
             ->withDescription('Le meilleur brownie')
             ->build();
-        
+
         $this->imageStorage
             ->expects($this->once())
             ->method('store')
             ->with($command->imageUrl, $this->anything())
             ->willReturn($command->imageUrl);
-        
+
         $this->recipeRepository
             ->expects($this->never())
             ->method('save');
@@ -90,7 +90,7 @@ final class RecipeFactoryTest extends ApplicationTestCase
             ->method('store')
             ->with($command->imageUrl, $this->anything())
             ->willReturn($command->imageUrl);
-            
+
         $this->recipeRepository
             ->expects($this->never())
             ->method('save');
@@ -104,7 +104,6 @@ final class RecipeFactoryTest extends ApplicationTestCase
 
     public function testCategoriesCanBeAddedAfterCreation(): void
     {
-
         $this->recipeRepository
             ->expects($this->never())
             ->method('save');
@@ -122,8 +121,6 @@ final class RecipeFactoryTest extends ApplicationTestCase
         $this->imageStorage
             ->expects($this->never())
             ->method('store');
-
-        
 
         self::assertCount(1, $recipe->getCategories());
         $this->assertGeneratedId($recipe);
