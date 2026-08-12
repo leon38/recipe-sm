@@ -1,3 +1,10 @@
+[![CI - Tests & Quality](https://github.com/leon38/recipe-sm/actions/workflows/ci.yaml/badge.svg)](https://github.com/leon38/recipe-sm/actions/workflows/ci.yaml)
+[![PHP](https://img.shields.io/badge/PHP-8.4-777BB4?logo=php&logoColor=white)](https://www.php.net/)
+[![Symfony](https://img.shields.io/badge/Symfony-8.1-000000?logo=symfony&logoColor=white)](https://symfony.com/)
+[![PHPUnit](https://img.shields.io/badge/PHPUnit-13-3C9CD7?logo=php&logoColor=white)](https://phpunit.de/)
+[![PHPStan](https://img.shields.io/badge/PHPStan-enabled-42B883)](https://phpstan.org/)
+[![Deptrac](https://img.shields.io/badge/Deptrac-enabled-42B883)](https://deptrac.github.io/deptrac/)
+
 # Recipe API
 
 Une API REST moderne développée avec **Symfony 8** permettant d'importer, gérer et rechercher des recettes de cuisine.
