@@ -1,13 +1,14 @@
 <?php
+
 namespace App\Tests\Unit\Application\Recipe\Resolver;
 
 use App\Application\Recipe\Resolver\IngredientResolver;
-use App\Domain\Recipe\Service\IngredientNameNormalizer;
 use App\Domain\Recipe\Repository\IngredientRepositoryInterface;
+use App\Domain\Recipe\Service\IngredientNameNormalizer;
 use App\Tests\Builder\IngredientBuilder;
-use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 
 final class IngredientResolverTest extends TestCase
 {
@@ -30,7 +31,6 @@ final class IngredientResolverTest extends TestCase
             ->willReturn(null);
 
         $resolvedIngredient = $this->resolver->resolve('Sucre');
-
 
         self::assertSame('Sucre', $resolvedIngredient->getName());
         self::assertSame('sucre', $resolvedIngredient->getNormalizedName());

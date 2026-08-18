@@ -22,17 +22,11 @@ final class RecipeContext implements Context
         $data = $this->getJsonResponse();
 
         if (!isset($data['title'])) {
-            throw new \RuntimeException(
-                'The response does not contain a "title" property.',
-            );
+            throw new \RuntimeException('The response does not contain a "title" property.');
         }
 
         if ($data['title'] !== $title) {
-            throw new \RuntimeException(sprintf(
-                'Expected recipe title "%s", got "%s".',
-                $title,
-                $data['title'],
-            ));
+            throw new \RuntimeException(sprintf('Expected recipe title "%s", got "%s".', $title, $data['title']));
         }
     }
 
@@ -43,25 +37,17 @@ final class RecipeContext implements Context
         $data = $this->getJsonResponse();
 
         if (!isset($data['ingredients'])) {
-            throw new \RuntimeException(
-                'The response does not contain an "ingredients" property.',
-            );
+            throw new \RuntimeException('The response does not contain an "ingredients" property.');
         }
 
         if (!is_array($data['ingredients'])) {
-            throw new \RuntimeException(
-                'The "ingredients" property is not an array.',
-            );
+            throw new \RuntimeException('The "ingredients" property is not an array.');
         }
 
         $actual = count($data['ingredients']);
 
         if ($actual !== $count) {
-            throw new \RuntimeException(sprintf(
-                'Expected %d ingredients, got %d.',
-                $count,
-                $actual,
-            ));
+            throw new \RuntimeException(sprintf('Expected %d ingredients, got %d.', $count, $actual));
         }
     }
 
@@ -72,25 +58,17 @@ final class RecipeContext implements Context
         $data = $this->getJsonResponse();
 
         if (!isset($data['steps'])) {
-            throw new \RuntimeException(
-                'The response does not contain a "steps" property.',
-            );
+            throw new \RuntimeException('The response does not contain a "steps" property.');
         }
 
         if (!is_array($data['steps'])) {
-            throw new \RuntimeException(
-                'The "steps" property is not an array.',
-            );
+            throw new \RuntimeException('The "steps" property is not an array.');
         }
 
         $actual = count($data['steps']);
 
         if ($actual !== $count) {
-            throw new \RuntimeException(sprintf(
-                'Expected %d steps, got %d.',
-                $count,
-                $actual,
-            ));
+            throw new \RuntimeException(sprintf('Expected %d steps, got %d.', $count, $actual));
         }
     }
 
@@ -101,25 +79,17 @@ final class RecipeContext implements Context
         $data = $this->getJsonResponse();
 
         if (!isset($data['tags'])) {
-            throw new \RuntimeException(
-                'The response does not contain a "tags" property.',
-            );
+            throw new \RuntimeException('The response does not contain a "tags" property.');
         }
 
         if (!is_array($data['tags'])) {
-            throw new \RuntimeException(
-                'The "tags" property is not an array.',
-            );
+            throw new \RuntimeException('The "tags" property is not an array.');
         }
 
         $actual = count($data['tags']);
 
         if ($actual !== $count) {
-            throw new \RuntimeException(sprintf(
-                'Expected %d tags, got %d.',
-                $count,
-                $actual,
-            ));
+            throw new \RuntimeException(sprintf('Expected %d tags, got %d.', $count, $actual));
         }
     }
 
@@ -130,25 +100,17 @@ final class RecipeContext implements Context
         $data = $this->getJsonResponse();
 
         if (!isset($data['categories'])) {
-            throw new \RuntimeException(
-                'The response does not contain a "categories" property.',
-            );
+            throw new \RuntimeException('The response does not contain a "categories" property.');
         }
 
         if (!is_array($data['categories'])) {
-            throw new \RuntimeException(
-                'The "categories" property is not an array.',
-            );
+            throw new \RuntimeException('The "categories" property is not an array.');
         }
 
         $actual = count($data['categories']);
 
         if ($actual !== $count) {
-            throw new \RuntimeException(sprintf(
-                'Expected %d categories, got %d.',
-                $count,
-                $actual,
-            ));
+            throw new \RuntimeException(sprintf('Expected %d categories, got %d.', $count, $actual));
         }
     }
 
@@ -160,9 +122,7 @@ final class RecipeContext implements Context
         $content = $this->client->getResponse()->getContent();
 
         if (false === $content) {
-            throw new \RuntimeException(
-                'Unable to retrieve response content.',
-            );
+            throw new \RuntimeException('Unable to retrieve response content.');
         }
 
         try {
@@ -173,16 +133,11 @@ final class RecipeContext implements Context
                 JSON_THROW_ON_ERROR,
             );
         } catch (\JsonException $exception) {
-            throw new \RuntimeException(
-                'The response is not valid JSON.',
-                previous: $exception,
-            );
+            throw new \RuntimeException('The response is not valid JSON.', previous: $exception);
         }
 
         if (!is_array($data)) {
-            throw new \RuntimeException(
-                'Expected the response to be a JSON object.',
-            );
+            throw new \RuntimeException('Expected the response to be a JSON object.');
         }
 
         return $data;

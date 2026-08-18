@@ -48,12 +48,7 @@ final class ApiContext implements Context
         $response = $this->getResponse();
 
         if ($statusCode !== $response->getStatusCode()) {
-            throw new \RuntimeException(sprintf(
-                "Expected HTTP status %d but got %d.\n\nResponse:\n%s",
-                $statusCode,
-                $response->getStatusCode(),
-                $response->getContent(),
-            ));
+            throw new \RuntimeException(sprintf("Expected HTTP status %d but got %d.\n\nResponse:\n%s", $statusCode, $response->getStatusCode(), $response->getContent()));
         }
     }
 
@@ -64,12 +59,7 @@ final class ApiContext implements Context
         $content = $this->getResponse()->getContent();
 
         if (!str_contains($content, $value)) {
-            throw new \RuntimeException(sprintf(
-                'The response does not contain "%s".%s%s',
-                $value,
-                PHP_EOL,
-                $content,
-            ));
+            throw new \RuntimeException(sprintf('The response does not contain "%s".%s%s', $value, PHP_EOL, $content));
         }
     }
 
@@ -81,10 +71,7 @@ final class ApiContext implements Context
         json_decode($content, true);
 
         if (JSON_ERROR_NONE !== json_last_error()) {
-            throw new \RuntimeException(sprintf(
-                'Response is not valid JSON: %s',
-                json_last_error_msg(),
-            ));
+            throw new \RuntimeException(sprintf('Response is not valid JSON: %s', json_last_error_msg()));
         }
     }
 
@@ -96,28 +83,18 @@ final class ApiContext implements Context
         $data = $this->getJsonResponse();
 
         if (!array_key_exists($property, $data)) {
-            throw new \RuntimeException(sprintf(
-                'Property "%s" does not exist in the response.',
-                $property,
-            ));
+            throw new \RuntimeException(sprintf('Property "%s" does not exist in the response.', $property));
         }
 
         if ((string) $data[$property] !== $expected) {
-            throw new \RuntimeException(sprintf(
-                'Expected "%s" for "%s", got "%s".',
-                $expected,
-                $property,
-                (string) $data[$property],
-            ));
+            throw new \RuntimeException(sprintf('Expected "%s" for "%s", got "%s".', $expected, $property, (string) $data[$property]));
         }
     }
 
-    protected function getResponse(): Response
+    private function getResponse(): Response
     {
         if (null === $this->response) {
-            throw new \RuntimeException(
-                'No HTTP response is available.',
-            );
+            throw new \RuntimeException('No HTTP response is available.');
         }
 
         return $this->response;
@@ -126,7 +103,7 @@ final class ApiContext implements Context
     /**
      * @return array<string, mixed>
      */
-    protected function getJsonResponse(): array
+    private function getJsonResponse(): array
     {
         $data = json_decode(
             $this->getResponse()->getContent(),
@@ -134,9 +111,7 @@ final class ApiContext implements Context
         );
 
         if (!is_array($data)) {
-            throw new \RuntimeException(
-                'The response does not contain a JSON object.',
-            );
+            throw new \RuntimeException('The response does not contain a JSON object.');
         }
 
         return $data;

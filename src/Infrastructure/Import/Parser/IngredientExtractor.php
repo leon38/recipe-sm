@@ -59,7 +59,7 @@ final class IngredientExtractor extends ContentExtractor
         $lines = preg_split('/\R/', $content);
 
         $start = $this->findIngredientsStart($lines);
-        if ($start === 0) {
+        if (0 === $start) {
             return [];
         }
 
@@ -105,7 +105,7 @@ final class IngredientExtractor extends ContentExtractor
         }
 
         $unit = isset($matches[2][0]) ? trim($matches[2][0]) : null;
-        
+
         $unit = $this->unitNormalizer->normalize($unit);
 
         $quantity = $this->quantityNormalizer->normalize($matches[1][0]);

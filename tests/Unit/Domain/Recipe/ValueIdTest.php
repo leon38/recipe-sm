@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Tests\Unit\Domain\Recipe;
 
 use App\Domain\Recipe\ValueObject\ValueId;

@@ -27,7 +27,7 @@ final class StepExtractor extends ContentExtractor
     {
         $lines = preg_split('/\R/', $content);
         $start = $this->findPreparationStart($lines);
-        if ($start === 0) {
+        if (0 === $start) {
             return [];
         }
 

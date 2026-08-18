@@ -28,7 +28,7 @@ class ContentExtractor
     protected function normalize(string $line): string
     {
         $line = mb_strtolower(trim($line));
-        
+
         // Supprime les emojis et la ponctuation
         $line = preg_replace('/[^\p{L}\p{N}\s]/u', ' ', $line);
 

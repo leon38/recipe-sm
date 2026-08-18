@@ -9,7 +9,7 @@ final class ValueId
     public function __construct(
         private string $value,
     ) {
-        if ($value === '') {
+        if ('' === $value) {
             throw new \InvalidArgumentException('ValueId cannot be empty.');
         }
     }
