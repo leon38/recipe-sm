@@ -89,7 +89,7 @@ final class UpdateRecipeCommandBuilder
         return $this;
     }
 
-    public function withCategory(int $id): self
+    public function withCategory(string $id): self
     {
         $this->categories[] = $id;
 

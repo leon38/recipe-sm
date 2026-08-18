@@ -58,7 +58,7 @@ final class ApiContext implements Context
     ): void {
         $content = $this->getResponse()->getContent();
 
-        if (!str_contains($content, $value)) {
+        if (false === $content || !str_contains($content, $value)) {
             throw new \RuntimeException(sprintf('The response does not contain "%s".%s%s', $value, PHP_EOL, $content));
         }
     }
@@ -67,6 +67,10 @@ final class ApiContext implements Context
     public function theResponseShouldBeValidJson(): void
     {
         $content = $this->getResponse()->getContent();
+
+        if (false === $content) {
+            throw new \RuntimeException('The response does not contain valid JSON.');
+        }
 
         json_decode($content, true);
 
@@ -105,6 +109,12 @@ final class ApiContext implements Context
      */
     private function getJsonResponse(): array
     {
+        $content = $this->getResponse()->getContent();
+
+        if (false === $content) {
+            throw new \RuntimeException('The response does not contain valid JSON.');
+        }
+
         $data = json_decode(
             $this->getResponse()->getContent(),
             true,

@@ -61,7 +61,7 @@ final class SearchRecipesQueryBuilder
         return $this;
     }
 
-    public function withCategory(int $id): self
+    public function withCategory(string $id): self
     {
         $this->categoryIds[] = $id;
 

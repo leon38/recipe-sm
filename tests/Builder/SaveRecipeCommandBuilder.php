@@ -26,7 +26,7 @@ class SaveRecipeCommandBuilder
     protected array $steps = [];
     /** @var array<array<string, mixed>> */
     protected array $tags = [];
-    /** @var array<int, array<string, mixed>> */
+    /** @var array<int, mixed> */
     protected array $categories = [];
 
     public static function create(): self

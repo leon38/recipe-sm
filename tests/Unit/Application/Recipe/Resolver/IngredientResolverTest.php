@@ -56,6 +56,9 @@ final class IngredientResolverTest extends TestCase
         self::assertSame($resolvedIngredient->getNormalizedName(), $resolvedNormalizedName);
     }
 
+    /**
+     * @return array<int, array{0: string, 1: string, 2: string, 3: string}>
+     */
     public static function specialIngredientsProvider(): array
     {
         return [
