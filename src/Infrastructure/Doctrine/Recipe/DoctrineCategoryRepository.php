@@ -5,15 +5,16 @@ namespace App\Infrastructure\Doctrine\Recipe;
 use App\Domain\Recipe\Entity\Category;
 use App\Domain\Recipe\Repository\CategoryRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<Category>
  */
 final class DoctrineCategoryRepository extends ServiceEntityRepository implements CategoryRepositoryInterface
 {
-    public function __construct(
-        private \Doctrine\ORM\EntityManagerInterface $entityManager,
-    ) {
+    public function __construct(private ManagerRegistry $registry)
+    {
+        parent::__construct($registry, Category::class);
     }
 
     /**

@@ -2,6 +2,9 @@
 
 namespace App\Domain\Recipe\Service;
 
+use Doctrine\Inflector\InflectorFactory;
+use Doctrine\Inflector\Language;
+
 final class IngredientNameNormalizer
 {
     private const STOP_WORDS = [
@@ -25,9 +28,14 @@ final class IngredientNameNormalizer
 
         $name = mb_strtolower($name);
 
-        $name = preg_replace('/[()]/', ' ', $name);
+        $name = preg_replace('/[()\-]/', ' ', $name);
 
         $name = preg_replace('/\s+/', ' ', $name);
+
+        $name = preg_replace('/\d+/', '', $name);
+
+        $inflector = InflectorFactory::createForLanguage(Language::FRENCH)->build();
+        $name = $inflector->unaccent($name);
 
         $words = explode(' ', $name);
 
@@ -38,9 +46,9 @@ final class IngredientNameNormalizer
                 continue;
             }
 
-            if (in_array($word, self::STOP_WORDS, true)) {
+            /*if (in_array($word, self::STOP_WORDS, true)) {
                 continue;
-            }
+            }*/
 
             $normalized[] = $word;
         }

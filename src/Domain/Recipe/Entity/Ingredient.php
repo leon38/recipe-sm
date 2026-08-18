@@ -19,12 +19,12 @@ final class Ingredient
     ) {
     }
 
-    public static function create(string $name): self
+    public static function create(string $name, string $normalizedName): self
     {
         return new self(
             ValueId::generate(),
             $name,
-            strtolower($name),
+            $normalizedName,
         );
     }
 

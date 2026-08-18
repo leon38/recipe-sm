@@ -33,13 +33,14 @@ class RecipeIngredient implements \JsonSerializable
 
     public static function create(
         string $name,
+        string $normalizedName,
         ?Ingredient $ingredient = null,
         ?float $quantity = null,
         ?string $unit = null,
     ): self {
         return new self(
             ValueId::generate(),
-            $ingredient ?? Ingredient::create($name),
+            $ingredient ?? Ingredient::create($name, $normalizedName),
             $name,
             $quantity,
             $unit,

@@ -4,7 +4,7 @@ namespace App\Infrastructure\Import\Parser;
 
 use App\Domain\Recipe\Enum\Unit;
 
-final class UnitNormalizer
+class UnitNormalizer
 {
     private const UNIT_ALIASES = [
         'cas' => Unit::TABLESPOON,
@@ -37,7 +37,7 @@ final class UnitNormalizer
 
     public function normalize(?string $unit): ?string
     {
-        if (null === $unit) {
+        if (null === $unit || '' === $unit) {
             return null;
         }
 

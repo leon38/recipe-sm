@@ -27,7 +27,8 @@ final readonly class RecipeIngredientFactory
             );
 
             $recipeIngredients[] = RecipeIngredient::create(
-                name: $ingredientData['name'],
+                name: $ingredient->getName(),
+                normalizedName: $ingredient->getNormalizedName(),
                 ingredient: $ingredient,
                 quantity: is_string($ingredientData['quantity']) ? (float) $ingredientData['quantity'] : $ingredientData['quantity'],
                 unit: $ingredientData['unit'],

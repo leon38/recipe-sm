@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Import\Parser;
 
-final class QuantityNormalizer
+class QuantityNormalizer
 {
     private const QUANTITY_ALIASES = [
         '1,5' => 1.5,

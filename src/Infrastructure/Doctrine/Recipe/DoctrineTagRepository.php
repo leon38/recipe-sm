@@ -5,15 +5,16 @@ namespace App\Infrastructure\Doctrine\Recipe;
 use App\Domain\Recipe\Entity\Tag;
 use App\Domain\Recipe\Repository\TagRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<Tag>
  */
 final class DoctrineTagRepository extends ServiceEntityRepository implements TagRepositoryInterface
 {
-    public function __construct(
-        private readonly \Doctrine\Persistence\ManagerRegistry $doctrine,
-    ) {
+    public function __construct(private ManagerRegistry $registry)
+    {
+        parent::__construct($registry, Tag::class);
     }
 
     /**
@@ -24,6 +25,6 @@ final class DoctrineTagRepository extends ServiceEntityRepository implements Tag
      */
     public function findBy(array $criteria, ?array $orderBy = null, ?int $limit = null, ?int $offset = null): array
     {
-        return $this->doctrine->getRepository(Tag::class)->findBy($criteria, $orderBy, $limit, $offset);
+        return $this->registry->getManager()->getRepository(Tag::class)->findBy($criteria, $orderBy, $limit, $offset);
     }
 }

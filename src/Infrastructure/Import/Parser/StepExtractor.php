@@ -14,7 +14,6 @@ final class StepExtractor extends ContentExtractor
         'instructions',
         'méthode',
         'method',
-        'recette',
         'réalisation',
         'realisation',
         'marche à suivre',
@@ -28,6 +27,9 @@ final class StepExtractor extends ContentExtractor
     {
         $lines = preg_split('/\R/', $content);
         $start = $this->findPreparationStart($lines);
+        if ($start === 0) {
+            return [];
+        }
 
         $steps = [];
         for ($i = $start; $i < count($lines); ++$i) {

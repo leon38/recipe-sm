@@ -7,11 +7,13 @@ use App\Application\Recipe\Service\RecipeImporterRegistry;
 use App\Domain\Recipe\Entity\Recipe;
 use App\Domain\Recipe\Entity\RecipeIngredient;
 use App\Domain\Recipe\Entity\Step;
+use App\Domain\Recipe\Service\IngredientNameNormalizer;
 
 final class ImportRecipeFromUrlHandler
 {
     public function __construct(
         private readonly RecipeImporterRegistry $importerRegistry,
+        private readonly IngredientNameNormalizer $ingredientNormalizer,
     ) {
     }
 
@@ -38,6 +40,7 @@ final class ImportRecipeFromUrlHandler
             $recipe->addIngredient(
                 RecipeIngredient::create(
                     name: $ingredient->name,
+                    normalizedName: $this->ingredientNormalizer->normalize($ingredient->name),
                     quantity: $ingredient->quantity,
                     unit: $ingredient->unit,
                 )

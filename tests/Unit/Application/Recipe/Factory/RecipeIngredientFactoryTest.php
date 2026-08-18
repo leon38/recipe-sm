@@ -27,13 +27,13 @@ final class RecipeIngredientFactoryTest extends TestCase
     public function testCreateRecipeIngredient(): void
     {
         $ingredient = IngredientBuilder::create()
-            ->withName('Farine')
+            ->withName('farine')
             ->build();
 
         $recipeIngredients = $this->factory->createMany(
             [
                 [
-                    'name' => 'Farine',
+                    'name' => 'farine',
                     'quantity' => 250,
                     'unit' => 'g',
                 ],

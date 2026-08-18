@@ -26,6 +26,7 @@ final readonly class IngredientResolver
 
         $ingredient = Ingredient::create(
             name: $name,
+            normalizedName: $normalizedName,
         );
 
         $this->repository->save($ingredient);
