@@ -23,6 +23,11 @@ final class GeminiRecipeParser implements RecipeParserInterface
         // For now, we'll return a dummy ImportedRecipeDTO for demonstration purposes
 
         $apiKey = $this->parameterBag->get('GEMINI_API_KEY') ?? 'your-gemini-api-key';
+
+        if (!is_string($apiKey)) {
+            throw new \InvalidArgumentException('GEMINI_API_KEY must be a string.');
+        }
+
         $client = \Gemini::client($apiKey);
 
         $result = $client->generativeModel(model: 'gemini-2.0-flash')->generateContent(

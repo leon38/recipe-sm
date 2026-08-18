@@ -14,7 +14,7 @@ class QuantityNormalizer
         'un' => 1,
     ];
 
-    public function normalize(?string $quantity): ?float
+    public function normalize(?string $quantity): mixed
     {
         if (null === $quantity) {
             return null;
@@ -27,9 +27,6 @@ class QuantityNormalizer
         }
 
         $quantity = mb_strtolower($quantity);
-
-        // suppression des accents
-        $quantity = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $quantity);
 
         // remplacement des virgules par des points
         $quantity = str_replace(',', '.', $quantity);

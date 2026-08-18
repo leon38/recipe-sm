@@ -26,6 +26,11 @@ final class StepExtractor extends ContentExtractor
     public function extract(string $content): array
     {
         $lines = preg_split('/\R/', $content);
+
+        if (false === $lines) {
+            return [];
+        }
+
         $start = $this->findPreparationStart($lines);
         if (0 === $start) {
             return [];
@@ -47,7 +52,7 @@ final class StepExtractor extends ContentExtractor
     /**
      * Finds the starting index of the preparation steps section.
      *
-     * @param array<string> $lines the lines of the content
+     * @param list<string> $lines the lines of the content
      *
      * @return int the index of the first preparation step line
      */

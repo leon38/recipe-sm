@@ -21,9 +21,13 @@ final class ClaudeRecipeParser implements RecipeParserInterface
     ): ImportedRecipeDTO {
         // Implement the parsing logic here using Claude AI API
         // For now, we'll return a dummy ImportedRecipeDTO for demonstration purposes
+        $apiKey = $this->parameterBag->get('ANTHROPIC_API_KEY') ?? 'my-anthropic-api-key';
+        if (!is_string($apiKey)) {
+            throw new \InvalidArgumentException('ANTHROPIC_API_KEY must be a string.');
+        }
 
         $client = new Client(
-            apiKey: $this->parameterBag->get('ANTHROPIC_API_KEY') ?? 'my-anthropic-api-key',
+            apiKey: $apiKey,
         );
 
         $message = $client->messages->create(

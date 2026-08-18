@@ -49,9 +49,6 @@ class UnitNormalizer
 
         $unit = mb_strtolower($unit);
 
-        // suppression des accents
-        $unit = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $unit);
-
         // suppression des points
         $unit = str_replace('.', '', $unit);
 

@@ -7,21 +7,6 @@ use Doctrine\Inflector\Language;
 
 final class IngredientNameNormalizer
 {
-    private const STOP_WORDS = [
-        'de',
-        'du',
-        'des',
-        'd',
-        'la',
-        'le',
-        'les',
-        'un',
-        'une',
-        'à',
-        'au',
-        'aux',
-    ];
-
     public function normalize(string $name): string
     {
         $name = trim($name);
@@ -45,10 +30,6 @@ final class IngredientNameNormalizer
             if ('' === $word) {
                 continue;
             }
-
-            /*if (in_array($word, self::STOP_WORDS, true)) {
-                continue;
-            }*/
 
             $normalized[] = $word;
         }

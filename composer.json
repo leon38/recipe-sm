@@ -102,11 +102,29 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
+        "tests:csfixer": [
+            "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --verbose --dry-run"
+        ],
+        "tests:csfix": [
+            "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php"
+        ],
+        "tests:unit": [
+            "vendor/bin/phpunit"
+        ],
+        "tests:phpstan": [
+            "vendor/bin/phpstan analyse src --level=7 --memory-limit 256M"
+        ],
         "test:behat": [
             "@php bin/console doctrine:database:drop --if-exists --force --env=test",
             "@php bin/console doctrine:database:create --if-not-exists --env=test",
             "@php bin/console doctrine:migrations:migrate --no-interaction --env=test",
             "vendor/bin/behat"
+        ],
+        "tests:all": [
+            "@tests:csfix",
+            "@tests:unit",
+            "@tests:phpstan",
+            "@test:behat"
         ]
     },
     "conflict": {

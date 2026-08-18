@@ -38,6 +38,9 @@ final class RegexRecipeParser implements RecipeParserInterface
     private function extractTitle(string $content): string
     {
         $lines = preg_split('/\R/u', $content);
+        if (false === $lines) {
+            return 'Sans titre';
+        }
 
         foreach ($lines as $line) {
             $line = trim($line);

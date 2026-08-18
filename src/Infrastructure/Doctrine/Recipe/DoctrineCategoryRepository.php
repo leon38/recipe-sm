@@ -29,7 +29,7 @@ final class DoctrineCategoryRepository extends ServiceEntityRepository implement
 
     public function update(Category $category): void
     {
-        $this->entityManager->persist($category);
+        $this->registry->getManager()->persist($category);
     }
 
     /**

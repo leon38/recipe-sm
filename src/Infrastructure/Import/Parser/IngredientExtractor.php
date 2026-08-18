@@ -57,6 +57,9 @@ final class IngredientExtractor extends ContentExtractor
     public function extract(string $content): array
     {
         $lines = preg_split('/\R/', $content);
+        if (false === $lines) {
+            return [];
+        }
 
         $start = $this->findIngredientsStart($lines);
         if (0 === $start) {
@@ -122,12 +125,16 @@ final class IngredientExtractor extends ContentExtractor
     /**
      * Finds the starting index of the ingredients section.
      *
-     * @param array<string> $lines the lines of the content
+     * @param list<string>|false $lines the lines of the content
      *
      * @return int the index of the first ingredient line
      */
-    private function findIngredientsStart(array $lines): int
+    private function findIngredientsStart(array|bool $lines): int
     {
+        if (!is_array($lines)) {
+            return 0;
+        }
+
         foreach ($lines as $index => $line) {
             $normalized = $this->normalize($line);
 

@@ -26,7 +26,7 @@ final class DoctrineRecipeReadRepository extends ServiceEntityRepository impleme
     {
         $qb = $this->createQueryBuilder('r');
 
-        $total = (clone $qb)
+        $total = (int) (clone $qb)
             ->select('COUNT(r.id)')
             ->getQuery()
             ->getSingleScalarResult();
