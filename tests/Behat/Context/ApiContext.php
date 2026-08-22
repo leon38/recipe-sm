@@ -114,8 +114,16 @@ final class ApiContext implements Context
         );
 
         $response = $this->client->getResponse();
+        $content = $response->getContent();
+        $data = json_decode($content, true);
 
-        $data = json_decode($response->getContent(), true);
+        if ($data === null) {
+            throw new \RuntimeException(sprintf(
+                "Impossible de décoder la réponse JSON.\nStatus: %d\nBody: %s",
+                $this->client->getResponse()->getStatusCode(),
+                $content
+            ));
+        }
 
         $this->token = $data['token'];
         $this->client->setServerParameter('HTTP_Authorization', sprintf('Bearer %s', $this->token));
