@@ -117,12 +117,8 @@ final class ApiContext implements Context
         $content = $response->getContent();
         $data = json_decode($content, true);
 
-        if ($data === null) {
-            throw new \RuntimeException(sprintf(
-                "Impossible de décoder la réponse JSON.\nStatus: %d\nBody: %s",
-                $this->client->getResponse()->getStatusCode(),
-                $content
-            ));
+        if (null === $data) {
+            throw new \RuntimeException(sprintf("Impossible de décoder la réponse JSON.\nStatus: %d\nBody: %s", $this->client->getResponse()->getStatusCode(), $content));
         }
 
         $this->token = $data['token'];
