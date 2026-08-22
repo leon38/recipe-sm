@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/api/recipe')]
+#[Route('/api/public/recipe')]
 final class SingleRecipeController extends AbstractController
 {
     public function __construct(private QueryBusInterface $queryBus)

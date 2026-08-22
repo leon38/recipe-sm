@@ -5,6 +5,7 @@ namespace App\Application\Recipe\Command;
 final class SaveRecipeCommand
 {
     public function __construct(
+        public ?string $userId,
         public string $title,
         public ?string $description,
         public ?int $prepTime,

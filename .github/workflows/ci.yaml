@@ -138,11 +138,29 @@ jobs:
           DATABASE_URL=mysql://recipe:recipe@127.0.0.1:3306/recipe?serverVersion=8.4
           DEFAULT_URI=http://localhost
           CORS_ALLOW_ORIGIN='^https?://(localhost|127\.0\.0\.1)(:[0-9]+)?$'
+          JWT_PASSPHRASE=ci-test-passphrase
+          JWT_SECRET_KEY=%kernel.project_dir%/tests/Resources/jwt/private.pem
+          JWT_PUBLIC_KEY=%kernel.project_dir%/tests/Resources/jwt/public.pem
           EOF
-
+          
       - name: Install dependencies
-        run: composer install --no-interaction --prefer-dist --optimize-autoloader
-
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader   
+      
+      - name: Generate JWT test keys
+        run: |
+          mkdir -p tests/Resources/jwt
+          openssl genpkey \
+            -out tests/Resources/jwt/private.pem \
+            -aes256 \
+            -algorithm RSA \
+            -pkeyopt rsa_keygen_bits:4096 \
+            -pass pass:ci-test-passphrase
+          openssl pkey \
+            -in tests/Resources/jwt/private.pem \
+            -passin pass:ci-test-passphrase \
+            -out tests/Resources/jwt/public.pem \
+            -pubout
+            
       - name: Grant privileges to test user
         run: |
           mysql -h127.0.0.1 -uroot -proot -e "GRANT ALL PRIVILEGES ON \`recipe_test%\`.* TO 'recipe'@'%'; FLUSH PRIVILEGES;"
@@ -157,6 +175,7 @@ jobs:
         run: |
           php bin/console doctrine:fixtures:load \
             --no-interaction
+      
 
       - name: PHPUnit
         run: |

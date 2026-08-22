@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Tests\Behat\Context\ApiContext;
 use App\Tests\Behat\Context\RecipeContext;
+use App\Tests\Behat\Context\UserContext;
 use Behat\Config\Config;
 use Behat\Config\Extension;
 use Behat\Config\Profile;
@@ -27,6 +28,7 @@ return (new Config())
                     ->withContexts(
                         ApiContext::class,
                         RecipeContext::class,
+                        UserContext::class,
                     ),
             )
             ->withExtension(

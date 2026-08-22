@@ -7,6 +7,7 @@ namespace App\Tests\Builder;
 use App\Application\Recipe\Command\SaveRecipeCommand;
 use App\Domain\Recipe\Enum\Difficulty;
 use App\Domain\Recipe\Enum\Season;
+use App\Domain\Recipe\ValueObject\ValueId;
 
 class SaveRecipeCommandBuilder
 {
@@ -94,6 +95,7 @@ class SaveRecipeCommandBuilder
     public function build(): SaveRecipeCommand
     {
         return new SaveRecipeCommand(
+            userId: (ValueId::generate())->getValue(),
             title: $this->title,
             description: $this->description,
             prepTime: $this->prepTime,

@@ -4,7 +4,18 @@ Feature: Save a recipe
   I want to save a recipe
   So that it can be retrieved later
 
+  Scenario: An anonymous user cannot create a recipe
+    When I send a POST request to "/api/recipe" with the following JSON:
+      """
+      {
+        "title": "Tarte aux pommes"
+      }
+      """
+    Then the response status code should be 401
+
   Scenario: Save a recipe
+    Given I have a user "user@example.com" with password "password"
+    And I am authenticated as "user@example.com"
     When I send a POST request to "/api/recipe" with the following JSON:
       """
       {
@@ -28,6 +39,8 @@ Feature: Save a recipe
     And the response should contain "Tarte aux pommes"
 
   Scenario: Save a recipe without title
+    Given I have a user "user@example.com" with password "password"
+    And I am authenticated as "user@example.com"
     When I send a POST request to "/api/recipe" with the following JSON:
       """
       {

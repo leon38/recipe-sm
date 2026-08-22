@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Behat\Context;
 
 use Behat\Behat\Context\Context;
+use Behat\Step\Given;
 use Behat\Step\Then;
 use Behat\Step\When;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
@@ -12,14 +13,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class ApiContext implements Context
 {
-    private KernelBrowser $client;
-
     private ?Response $response = null;
 
+    private string $token = '';
+
     public function __construct(
-        private readonly KernelBrowser $kernelBrowser,
+        private readonly KernelBrowser $client,
     ) {
-        $this->client = $kernelBrowser;
     }
 
     #[When('I send a :method request to :url with the following JSON:')]
@@ -29,8 +29,8 @@ final class ApiContext implements Context
         string $json,
     ): void {
         $this->client->request(
-            $method,
-            $url,
+            method: $method,
+            uri: $url,
             server: [
                 'CONTENT_TYPE' => 'application/json',
                 'HTTP_ACCEPT' => 'application/json',
@@ -93,6 +93,32 @@ final class ApiContext implements Context
         if ((string) $data[$property] !== $expected) {
             throw new \RuntimeException(sprintf('Expected "%s" for "%s", got "%s".', $expected, $property, (string) $data[$property]));
         }
+    }
+
+    #[Given('I am authenticated as :email with password :password')]
+    #[Given('I am authenticated as :email')]
+    public function iAmAuthenticatedAs(
+        string $email,
+        string $password = 'password',
+    ): void {
+        $response = $this->client->request(
+            method: 'POST',
+            uri: '/api/login_check',
+            server: [
+                'CONTENT_TYPE' => 'application/json',
+            ],
+            content: json_encode([
+                'email' => $email,
+                'password' => $password,
+            ]),
+        );
+
+        $response = $this->client->getResponse();
+
+        $data = json_decode($response->getContent(), true);
+
+        $this->token = $data['token'];
+        $this->client->setServerParameter('HTTP_Authorization', sprintf('Bearer %s', $this->token));
     }
 
     private function getResponse(): Response

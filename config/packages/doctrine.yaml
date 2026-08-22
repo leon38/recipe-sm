@@ -18,8 +18,8 @@ doctrine:
             App:
                 type: attribute
                 is_bundle: false
-                dir: '%kernel.project_dir%/src/Domain/Recipe/Entity'
-                prefix: 'App\Domain\Recipe\Entity'
+                dir: '%kernel.project_dir%/src/Domain'
+                prefix: 'App\Domain'
                 alias: App
 
 when@test:

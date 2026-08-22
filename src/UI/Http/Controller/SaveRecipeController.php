@@ -4,6 +4,7 @@ namespace App\UI\Http\Controller;
 
 use App\Application\Recipe\Command\SaveRecipeCommand;
 use App\Application\Recipe\CommandHandler\SaveRecipeHandler;
+use App\Domain\Recipe\ValueObject\ValueId;
 use App\UI\Http\Request\ParsedRecipeRequest;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -22,19 +23,20 @@ final class SaveRecipeController extends AbstractController
     {
         $recipe = ($this->handler)(
             new SaveRecipeCommand(
-                $dto->title,
-                $dto->description,
-                $dto->prepTime,
-                $dto->cookTime,
-                $dto->difficulty,
-                $dto->servings,
-                $dto->season,
-                $dto->imageUrl,
-                $dto->sourceUrl,
-                $dto->ingredients,
-                $dto->steps,
-                $dto->tags,
-                $dto->categories
+                userId: ValueId::fromString($this->getUser()->getUserIdentifier()),
+                title: $dto->title,
+                description: $dto->description,
+                prepTime: $dto->prepTime,
+                cookTime: $dto->cookTime,
+                difficulty: $dto->difficulty,
+                servings: $dto->servings,
+                season: $dto->season,
+                imageUrl: $dto->imageUrl,
+                sourceUrl: $dto->sourceUrl,
+                ingredients: $dto->ingredients,
+                steps: $dto->steps,
+                tags: $dto->tags,
+                categories: $dto->categories
             )
         );
 
