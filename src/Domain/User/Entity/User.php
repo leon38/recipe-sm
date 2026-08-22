@@ -5,12 +5,11 @@ declare(strict_types=1);
 namespace App\Domain\User\Entity;
 
 use App\Domain\Recipe\ValueObject\ValueId;
-use App\Infrastructure\Doctrine\User\DoctrineUserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-#[ORM\Entity(repositoryClass: DoctrineUserRepository::class)]
+#[ORM\Entity()]
 #[ORM\Table(name: 'user')]
 final class User implements UserInterface, PasswordAuthenticatedUserInterface
 {

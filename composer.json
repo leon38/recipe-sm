@@ -109,6 +109,9 @@
         "tests:csfix": [
             "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php"
         ],
+        "tests:deptrac": [
+            "vendor/bin/deptrac analyse"
+        ],
         "tests:unit": [
             "vendor/bin/phpunit"
         ],
@@ -123,8 +126,9 @@
         ],
         "tests:all": [
             "@tests:csfix",
-            "@tests:unit",
             "@tests:phpstan",
+            "@tests:deptrac",
+            "@tests:unit",
             "@test:behat"
         ]
     },
