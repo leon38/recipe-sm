@@ -138,7 +138,7 @@ jobs:
           DATABASE_URL=mysql://recipe:recipe@127.0.0.1:3306/recipe?serverVersion=8.4
           DEFAULT_URI=http://localhost
           CORS_ALLOW_ORIGIN='^https?://(localhost|127\.0\.0\.1)(:[0-9]+)?$'
-          JWT_PASSPHRASE=ci-test-passphrase
+          JWT_PASSPHRASE=test
           JWT_SECRET_KEY=%kernel.project_dir%/tests/Resources/jwt/private.pem
           JWT_PUBLIC_KEY=%kernel.project_dir%/tests/Resources/jwt/public.pem
           EOF
@@ -154,10 +154,10 @@ jobs:
             -aes256 \
             -algorithm RSA \
             -pkeyopt rsa_keygen_bits:4096 \
-            -pass pass:ci-test-passphrase
+            -pass pass:test
           openssl pkey \
             -in tests/Resources/jwt/private.pem \
-            -passin pass:ci-test-passphrase \
+            -passin pass:test \
             -out tests/Resources/jwt/public.pem \
             -pubout
             
