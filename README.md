@@ -284,8 +284,8 @@ Les étapes comprennent notamment :
 
 # Évolutions prévues
 
-* Authentification JWT.
-* Gestion des utilisateurs.
+* ~~Authentification JWT.~~
+* ~~Gestion des utilisateurs.~~
 * Favoris.
 * Planification de repas.
 * Génération automatique de listes de courses.

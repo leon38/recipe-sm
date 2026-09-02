@@ -71,6 +71,7 @@ final class IngredientResolverTest extends TestCase
             ['ananas', 'ananas', 'ananas', 'ananas'],
             ['Riz', 'riz', 'Riz', 'riz'],
             ['pommes de terre', 'pommes de terre', 'pommes de terre', 'pommes de terre'],
+            ['huile de sésame', 'huile de sesame', 'huile de sésame', 'huile de sesame'],
         ];
     }
 }

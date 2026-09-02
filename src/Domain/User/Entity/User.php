@@ -29,6 +29,17 @@ final class User implements UserInterface, PasswordAuthenticatedUserInterface
     ) {
     }
 
+    public static function create(
+        string $email,
+        string $password,
+    ): self {
+        return new self(
+            id: ValueId::generate(),
+            email: $email,
+            password: $password,
+        );
+    }
+
     public function getId(): ValueId
     {
         return $this->id;

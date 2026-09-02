@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/api/public/category')]
+#[Route('/api/category')]
 final class CategoriesController extends AbstractController
 {
     public function __construct(

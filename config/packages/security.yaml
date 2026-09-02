@@ -33,6 +33,7 @@ security:
     access_control:
         - { path: ^/api/login_check, roles: PUBLIC_ACCESS }
         - { path: ^/api/login$, roles: PUBLIC_ACCESS }
+        - { path: ^/api/register, roles: PUBLIC_ACCESS }
 
         # Lecture publique
         - { path: ^/api/recipe$, methods: [GET], roles: PUBLIC_ACCESS }
